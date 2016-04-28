@@ -9,11 +9,11 @@ handlers:
   static_files: search.html
   upload: search.html
   
-- url: /search
+- url: /search.html
   static_files: search.html
   upload: search.html
   
-- url: /about
+- url: /about.html
   static_files: about.html
   upload: about.html
   
