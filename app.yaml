@@ -1,19 +1,19 @@
-application: geoyt-1290
+application: geoyoutube-1290
 version: 1
 runtime: python27
 api_version: 1
 threadsafe: true
 
 handlers:
-- url: /.*
+- url: /
   static_files: search.html
   upload: search.html
   
-- url: /search
+- url: /search.html
   static_files: search.html
   upload: search.html
   
-- url: /about
+- url: /about.html
   static_files: about.html
   upload: about.html
   
@@ -22,3 +22,6 @@ handlers:
   
 - url: /js
   static_dir: js
+
+- url: /images
+  static_dir: images
