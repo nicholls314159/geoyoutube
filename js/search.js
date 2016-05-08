@@ -622,7 +622,7 @@ function generateResultList() {
   div.addClass('tableOfVideoContentResults');
 
   var tableDefinition = $('<table>');
-  tableDefinition.attr('width', '500');
+  tableDefinition.attr('width', '00');
   tableDefinition.attr('cellpadding', '5');
 
   //filter out any irrelevant results
