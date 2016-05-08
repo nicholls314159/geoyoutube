@@ -39,7 +39,7 @@ var inputObject = {};
 var geocoder;
 
 //publishAfterTime and publishBeforeTime define the before and after times to submit for the search
-var publishAfterTime = ''
+var publishAfterTime = '';
 var publishBeforeTime = '';
 
 //queryFromClickSearchNotURL is a flag which indicates if the search originated from a clicked search button or from loading the parameters from the URL
