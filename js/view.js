@@ -28,15 +28,15 @@ var viewObject = {};
   */
 $(document).ready(function() {
   console.log("Yipppppppppppeeeeeeee0");
-  loadParamsFromURL();
+  //loadParamsFromURL();
   console.log("Yipppppppppppeeeeeeee1");
-  generateVideoViewer();
+  //generateVideoViewer();
   console.log("Yipppppppppppeeeeeeee2");
 });
 
 
 /**  This function loads parameters from a URL into the input object
- */
+ 
 function loadParamsFromURL() {
   //retrieve URL from browser window
   var startURL = decodeURIComponent(window.location);
@@ -61,7 +61,8 @@ function loadParamsFromURL() {
     viewObject.inputVideoID = urlParams['v'];
     console.log("viewObject.inputVideoID:  " + viewObject.inputVideoID);
 }
-
+*/
+/**
 function generateVideoViewer(){
     console.log("donkey balls 1");
     var div = $('<div>');
@@ -70,5 +71,6 @@ function generateVideoViewer(){
     $('#videoPlayer').append(embeddedVideoPlayer);
     console.log("donkey balls 2");
 }
+*/
 
 
