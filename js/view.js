@@ -30,7 +30,7 @@ $(document).ready(function() {
   console.log("Yipppppppppppeeeeeeee0");
   loadParamsFromURL();
   console.log("Yipppppppppppeeeeeeee1");
-  //generateVideoViewer();
+  generateVideoViewer();
   console.log("Yipppppppppppeeeeeeee2");
 });
 
@@ -66,8 +66,9 @@ function loadParamsFromURL() {
   viewObject.inputVideoID = urlParams['v'];
   console.log("viewObject.inputVideoID:  " + viewObject.inputVideoID);
 }
-*/
+
 /**
+ */ 
 function generateVideoViewer(){
     console.log("donkey balls 1");
     var div = $('<div>');
@@ -76,6 +77,5 @@ function generateVideoViewer(){
     $('#videoPlayer').append(embeddedVideoPlayer);
     console.log("donkey balls 2");
 }
-*/
 
 
