@@ -45,12 +45,14 @@ function loadParamsFromURL() {
   //If the URL does not contain search parameters to parse skip to end of function
   if (startURL && startURL.indexOf('?v=') > 0) {
     //create an array of parameters parsed from URL
+    console.log('cutting up start url '+startURL.slice(startURL.indexOf('?v=') + 1));
     var paramListCollection = startURL.slice(startURL.indexOf('?v=') + 1).split("&");
 
     //define the urlParams array
     var urlParams = {};
     for (var i = 0; i < paramListCollection.length; i++) {
       //parse the individual parameters and values into a temporary array
+      console.log('paramListCollection['+i+'] is '+ paramListCollection[i] + '.');
       var individualParamCollection = paramListCollection[i].split("=");
       console.log('individualParamCollection['+i+'] is '+individualParamCollection[i]+'.');
 
@@ -60,11 +62,9 @@ function loadParamsFromURL() {
   }else{
      console.log("no video id");
   }
-}
-/*
-    //start loading inputObject from the URL parameters
-    viewObject.inputVideoID = urlParams['v'];
-    console.log("viewObject.inputVideoID:  " + viewObject.inputVideoID);
+  //start loading inputObject from the URL parameters
+  viewObject.inputVideoID = urlParams['v'];
+  console.log("viewObject.inputVideoID:  " + viewObject.inputVideoID);
 }
 */
 /**
