@@ -27,9 +27,11 @@ var viewObject = {};
 /**   
   */
 $(document).ready(function() {
-	console.log("Yipppppppppppeeeeeeee");
+  console.log("Yipppppppppppeeeeeeee0");
   loadParamsFromURL();
+  console.log("Yipppppppppppeeeeeeee1");
   generateVideoViewer();
+  console.log("Yipppppppppppeeeeeeee2");
   //resetResultsSection();
   //displayCustomRangeSection();
 
@@ -66,10 +68,13 @@ function loadParamsFromURL() {
 }
 
 function generateVideoViewer(){
+    console.log("donkey balls 1");
     var div = $('<div>');
     div.addClass('videoPlayer');
 	var embeddedVideoPlayer = $('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'" frameborder="0" allowfullscreen></iframe>');	
 	$('#videoPlayer').append(embeddedVideoPlayer);
+	
+   console.log("donkey balls 2");
 }
 
 
