@@ -52,12 +52,14 @@ function loadParamsFromURL() {
     for (var i = 0; i < paramListCollection.length; i++) {
       //parse the individual parameters and values into a temporary array
       var individualParamCollection = paramListCollection[i].split("=");
+      console.log('individualParamCollection['+i+'] is '+individualParamCollection[i]+'.');
 
       //store the URL parameter/value pairs into the urlParams array
       urlParams[individualParamCollection[0]] = individualParamCollection[1];
-    }else{
-     console.log("no video id")
     }
+  }else{
+     console.log("no video id");
+  }
 }
 /*
     //start loading inputObject from the URL parameters
