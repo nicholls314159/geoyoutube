@@ -54,7 +54,8 @@ function loadParamsFromURL() {
       //parse the individual parameters and values into a temporary array
       console.log('paramListCollection['+i+'] is '+ paramListCollection[i] + '.');
       var individualParamCollection = paramListCollection[i].split("=");
-      console.log('individualParamCollection['+i+'] is '+individualParamCollection[i]+'.');
+      console.log('individualParamCollection[0] is '+individualParamCollection[0]+'.');
+      console.log('individualParamCollection[1] is '+individualParamCollection[1]+'.');
 
       //store the URL parameter/value pairs into the urlParams array
       urlParams[individualParamCollection[0]] = individualParamCollection[1];
