@@ -41,7 +41,8 @@ function loadParamsFromURL() {
   //retrieve URL from browser window
   var startURL = decodeURIComponent(window.location);
   console.log("StartURL:  " + startURL);
-
+}
+/*
   //If the URL does not contain search parameters to parse skip to end of function
   if (startURL && startURL.indexOf('?v=') > 0) {
     //create an array of parameters parsed from URL
@@ -61,7 +62,7 @@ function loadParamsFromURL() {
     viewObject.inputVideoID = urlParams['v'];
     console.log("viewObject.inputVideoID:  " + viewObject.inputVideoID);
 }
-
+*/
 /**
 function generateVideoViewer(){
     console.log("donkey balls 1");
