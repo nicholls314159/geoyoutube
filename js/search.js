@@ -655,7 +655,7 @@ function generateResultList() {
     
     //Generate new URL string
     var videoURLString =
-    "/view.html?v=" + finalResults2[i].videoID
+    "/view.html?v="+finalResults2[i].videoID;
     /*
 		  + "&turl="+finalResults2[i].thumbNailURL+
 		  "&desc="+finalResults2[i].description+
@@ -667,7 +667,7 @@ function generateResultList() {
     */
     console.log("videoURLString is "+videoURLString)
     
-    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + videoURLString + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
+    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href='" + videoURLString + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
 
     //var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
     metaDataCell.append(videoString);
