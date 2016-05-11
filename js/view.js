@@ -20,6 +20,7 @@
  *  @author:  Stephen Nicholls, May 9, 2016
  */
 
+var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 
 //inputObject contains all the inputs from the User
 var viewObject = {};
@@ -28,12 +29,21 @@ var viewObject = {};
   */
 $(document).ready(function() {
   console.log("Yipppppppppppeeeeeeee0");
-  loadParamsFromURL();
+  $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
   console.log("Yipppppppppppeeeeeeee1");
   generateVideoViewer();
   console.log("Yipppppppppppeeeeeeee2");
+  pullVideoMetaData();
+  console.log("Yipppppppppppeeeeeeee3");
 });
 
+function handleClientLoad() {
+  gapi.client.load('youtube', 'v3', function() {
+     console.log("Yipppppppppppeeeeeeee0");
+     loadParamsFromURL();
+     console.log("Yipppppppppppeeeeeeee2");
+  });
+}
 
 /**  This function loads parameters from a URL into the input object
  */
@@ -79,4 +89,6 @@ function generateVideoViewer(){
     console.log("donkey balls 2");
 }
 
-
+function pullVideoMetaData(){
+   console.log("zebra1")
+}
