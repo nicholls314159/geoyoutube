@@ -99,19 +99,16 @@ function pullVideoMetaData(){
         key: API_ACCESS_KEY
       });
 console.log("zebra2")
+/*
       //execute request and process the response object to pull in latitude and longitude
       videoIDRequest.execute(function(response) {
         if ('error' in response || !response) {
           showConnectivityError();
         } else {
-          //iterate through the response items and execute a callback function for each
-          $.each(response.items, function() {
-            var videoRequestVideoId = this.id;
-            console.log("videoRequestVideoId is "+videoRequestVideoId)
-
-          });
+          console.log("zebbie");
         }
       }
+ */     
 }
 /**  This function displays a connectivity error to the end user in the event
  *  that we lose connectivity to one or more of the Google APIs
