@@ -509,11 +509,13 @@ function processYouTubeRequest(request) {
         videoResult.videoId = entryArr[i].id.videoId;
         videoIDString = videoIDString + videoResult.videoId + ",";
 
-        videoResult.url = "https://www.youtube.com/watch?v=" + videoResult.videoId;
+        //videoResult.url = "https://www.youtube.com/watch?v=" + videoResult.videoId;
         videoResult.channelID = entryArr[i].snippet.channelId;
         videoResult.channel = entryArr[i].snippet.channelTitle;
         videoResult.liveBroadcastContent = entryArr[i].snippet.liveBroadcastContent;
         videoResult.thumbNailURL = entryArr[i].snippet.thumbnails.default.url;
+        
+        
         videoResult.description = entryArr[i].snippet.description;
 
         var year = entryArr[i].snippet.publishedAt.substr(0, 4);
@@ -532,6 +534,9 @@ function processYouTubeRequest(request) {
 
         videoResult.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
         videoResult.publishTimeStamp = entryArr[i].snippet.publishedAt;
+
+        videoResult.url = "view.html?v="+ videoResult.videoId +"&channelID="+videoResult.channelID+"&channel="+videoResult.channel + "";
+        
 
         //add result to results
         resultsArr.push(videoResult);
