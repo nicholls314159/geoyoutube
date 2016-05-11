@@ -199,8 +199,8 @@ function populateVideoMetaData(){
     tableDefinition.append(resultRow);
 
     //show results in a table on UI
-    tableOfVideoContent_div.append(tableDefinition);
-   // $('#tableOfVideoViewContentResults').append(tableOfVideoContent_div);
+    tableOfVideoViewContent_div.append(tableDefinition);
+   $('#tableOfVideoViewContentResults').append(tableOfVideoViewContent_div);
 
     //ensure table is nested in 'video-container' div for proper formatting
     div.append(tableOfVideoContent_div);
