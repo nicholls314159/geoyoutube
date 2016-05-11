@@ -655,14 +655,16 @@ function generateResultList() {
     
     //Generate new URL string
     var videoURLString =
-    "/view.html?v=" + finalResults2[i].videoID +
-		  "&turl="+finalResults2[i].thumbNailURL+
+    "/view.html?v=" + finalResults2[i].videoID
+    /*
+		  + "&turl="+finalResults2[i].thumbNailURL+
 		  "&desc="+finalResults2[i].description+
 		  "&vurl="+finalResults2[i].url+
 		  "&title="+finalResults2[i].title+
 		  "&uptime="+finalResults2[i].displayTimeStamp+
 		  "&channelID="+channelID+
 		  "&channel="+channel;
+    */
     console.log("videoURLString is "+videoURLString)
     
     var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + videoURLString + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
