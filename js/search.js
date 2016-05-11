@@ -509,7 +509,7 @@ function processYouTubeRequest(request) {
         videoResult.videoId = entryArr[i].id.videoId;
         videoIDString = videoIDString + videoResult.videoId + ",";
 
-        //videoResult.url = "https://www.youtube.com/watch?v=" + videoResult.videoId;
+        videoResult.url = "https://www.youtube.com/watch?v=" + videoResult.videoId;
         videoResult.channelID = entryArr[i].snippet.channelId;
         videoResult.channel = entryArr[i].snippet.channelTitle;
         videoResult.liveBroadcastContent = entryArr[i].snippet.liveBroadcastContent;
@@ -535,8 +535,8 @@ function processYouTubeRequest(request) {
         videoResult.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
         videoResult.publishTimeStamp = entryArr[i].snippet.publishedAt;
 
-        videoResult.url = "view.html?v="+ videoResult.videoId +"&channelID="+videoResult.channelID+"&channel="+videoResult.channel + "";
-        
+        //videoResult.url = "view.html?v="+ videoResult.videoId +"&channelID="+videoResult.channelID+"&channel="+videoResult.channel + "&displayTimeStamp="+videoResult.displayTimeStamp;
+        //console.log("videoResult.url is"+videoResult.url)
 
         //add result to results
         resultsArr.push(videoResult);
@@ -654,7 +654,21 @@ function generateResultList() {
     imageCell.append(imageString);
 
     //format meta-data section
-    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
+    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=/view.html?v=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
+    
+    //Generate new URL string
+    /*
+    "https://www.youtube.com/watch?v=" + vid
+		  "&turl="+finalResults2[i].thumbNailURL+
+		  "&desc="+finalResults2[i].description+
+		  "&vurl="+finalResults2[i].url+
+		  "&title="+finalResults2[i].title+
+		  "&uptime="+finalResults2[i].displayTimeStamp+
+		  "&channelID="+channelID+
+		  "&channel="+channel;
+    */
+    
+    //var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
     metaDataCell.append(videoString);
     var uploadDate = "Uploaded on: " + finalResults2[i].displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + channelID + "' target='_blank'>" + channel + "</a></attr><br>";
