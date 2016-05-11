@@ -145,7 +145,9 @@ function pullVideoMetaData(){
              console.log("zebbie end");
           });
         }
+        console.log("zebra3")
         populateVideoMetaData();
+        console.log("zebra4")
       });
     
 }
@@ -181,11 +183,11 @@ function populateVideoMetaData(){
 
     //show results in a table on UI
     tableOfVideoContent_div.append(tableDefinition);
-    $('#tableOfVideoViewContentResults').append(tableOfVideoContent_div);
+    //$('#tableOfVideoViewContentResults').append(tableOfVideoContent_div);
 
     //ensure table is nested in 'video-container' div for proper formatting
-    div.append(tableOfVideoContent_div);
-    $('#videoview-container').append(div);
+    //div.append(tableOfVideoContent_div);
+    $('#videoview-container').append(tableOfVideoContent_div);
 }
 
 function hideErrorContainer() {
