@@ -91,7 +91,7 @@ function generateVideoViewer(){
     console.log("donkey balls 1");
     var div = $('<div>');
     div.addClass('videoPlayer');
-    var embeddedVideoPlayer = $('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'" frameborder="0" allowfullscreen></iframe>');	
+    var embeddedVideoPlayer = $('<iframe width="900" height="506" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'" frameborder="0" allowfullscreen></iframe>');	
     $('#videoPlayer').append(embeddedVideoPlayer);
     console.log("donkey balls 2");
 }
@@ -159,7 +159,7 @@ function populateVideoMetaData(){
     div.addClass('tableOfVideoViewContentResults');
 
     var tableDefinition = $('<table>');
-    tableDefinition.attr('width', '500');
+    tableDefinition.attr('width', '900');
     tableDefinition.attr('cellpadding', '5');
     
     //if channel name is blank then use channel ID 
@@ -168,30 +168,35 @@ function populateVideoMetaData(){
     }
  
     var resultRow = $('<tr>');
-    var imageCell = $('<td width=100>');
-    var metaDataCell = $('<td width=350 valign=top>');
+    var imageCell = $('<td width=200>');
+    var metaDataCell = $('<td width=700 valign=top>');
 
     //format image section
-    var imageString = "<img src='" + viewObject.thumbnailURL + "' height='100' width='100'/>";
+    var imageString = "<img src='" + viewObject.thumbnailURL + "' height='200' width='200'/>";
     imageCell.append(imageString);
 
     //format meta-data section
     var videoString = "<attr title='Description: " + viewObject.description + "'><a href=" + currentURL + ">" + viewObject.title + "</a></attr><br>";
-    metaDataCell.append(videoString);
     var uploadDate = "Uploaded on: " + viewObject.displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
 
+
+
+
+
+    metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
     
+    resultRow.append(imageCell);
     resultRow.append(metaDataCell);
     tableDefinition.append(resultRow);
 
     //show results in a table on UI
     tableOfVideoContent_div.append(tableDefinition);
-    $('#tableOfVideoViewContentResults').append(tableOfVideoContent_div);
+   // $('#tableOfVideoViewContentResults').append(tableOfVideoContent_div);
 
     //ensure table is nested in 'video-container' div for proper formatting
     div.append(tableOfVideoContent_div);
