@@ -167,9 +167,11 @@ function populateVideoMetaData(){
       viewObject.channel = viewObject.channelID;
     }
  
+    var resultRow_RIGHT = $('<tr>');
     var resultRow = $('<tr>');
     var imageCell = $('<td width=200>');
     var metaDataCell = $('<td width=700 valign=top>');
+    var metaDataCell_RIGHT = $('<td width=700 align='right' valign=top>');
 
     //format image section
     var imageString = "<img src='" + viewObject.thumbnailURL + "' height='200' width='200'/>";
@@ -181,17 +183,19 @@ function populateVideoMetaData(){
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
 
+    var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
 
 
-
-
+    metaDataCell_RIGHT.append(facebookString);
     metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
     
+    resultRow_RIGHT.append(metaDataCell_RIGHT);
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
+    tableDefinition.append(resultRow_RIGHT);
     tableDefinition.append(resultRow);
 
     //show results in a table on UI
