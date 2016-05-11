@@ -154,6 +154,13 @@ function pullVideoMetaData(){
 
 function populateVideoMetaData(){
 
+    var tableOfVideoContent_div = $('<div>');
+    div.addClass('tableOfVideoViewContentResults');
+
+    var tableDefinition = $('<table>');
+    tableDefinition.attr('width', '500');
+    tableDefinition.attr('cellpadding', '5');
+    
     //if channel name is blank then use channel ID 
     if (!viewObject.channel) {
       viewObject.channel = viewObject.channelID;
