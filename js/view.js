@@ -171,7 +171,7 @@ function populateVideoMetaData(){
     var resultRow = $('<tr>');
     var imageCell = $('<td width=200>');
     var metaDataCell = $('<td width=700 valign=top>');
-    var metaDataCell_RIGHT = $('<td width=700 align='right' valign=top>');
+    var metaDataCell_RIGHT = $('<td width=700 align=right valign=top>');
 
     //format image section
     var imageString = "<img src='" + viewObject.thumbnailURL + "' height='200' width='200'/>";
