@@ -145,7 +145,7 @@ function pullVideoMetaData(){
              console.log("zebbie end");
           });
         }
-        //////make call to next method here to avoid race condition
+        populateVideoMetaData();
       });
     
 }
@@ -188,6 +188,9 @@ function populateVideoMetaData(){
     $('#videoview-container').append(div);
 }
 
+function hideErrorContainer() {
+  $("#showErrorsContainer").hide();
+}
 
 /**  This function displays a connectivity error to the end user in the event
  *  that we lose connectivity to one or more of the Google APIs
