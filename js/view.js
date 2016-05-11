@@ -19,7 +19,9 @@
  *  the upload location of geo-tagged video results.
  *  @author:  Stephen Nicholls, May 9, 2016
  */
-
+ 
+//  Define Constants 
+var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 
 //inputObject contains all the inputs from the User
@@ -42,6 +44,8 @@ function handleClientLoad() {
      console.log("yavin2");
      pullVideoMetaData();
      console.log("yavin3");
+     //populateVideoMetaData();
+     console.log("yavin4");
   });
 }
 
@@ -90,25 +94,85 @@ function generateVideoViewer(){
 }
 
 function pullVideoMetaData(){
-   console.log("zebra1")
+      console.log("zebra1")
    
       //generate request object for video search
       var videoIDRequest = gapi.client.youtube.videos.list({
         id: viewObject.inputVideoID,
-        part: 'id,snippet,recordingDetails',
+        part: 'id,snippet',
         key: API_ACCESS_KEY
       });
-console.log("zebra2")
-/*
+      console.log("zebra2")
+
       //execute request and process the response object to pull in latitude and longitude
       videoIDRequest.execute(function(response) {
         if ('error' in response || !response) {
           showConnectivityError();
         } else {
-          console.log("zebbie");
+          console.log("zebbie start");
+          $.each(response.items, function(index, item) {
+             viewObject.title = item.snippet.title;
+             console.log('viewObject.title is' + viewObject.title);
+             viewObject.channelID = item.snippet.channelId;
+             console.log('viewObject.channelID is + viewObject.channelID)
+             viewObject.channel = item.snippet.channelTitle;
+             console.log('viewObject.channel is' + viewObject.channel);
+             viewObject.thumbnailURL = item..snippet.thumbnails.default.url;
+             console.log('viewObject.thumbnailURL is' + viewObject.thumbnailURL);
+             viewObject.description = item.snippet.description;
+             console.log('viewObject.description is' + viewObject.description);
+             var year = item..snippet.publishedAt.substr(0, 4);
+             var monthNumeric = item.snippet.publishedAt.substr(5, 2);
+             var monthInt = 0;
+             
+             if (monthNumeric.indexOf("0") === 0) {
+                 monthInt = monthNumeric.substr(1, 1);
+             } else {
+                 monthInt = monthNumeric;
+             }
+             var day = item.snippet.publishedAt.substr(8, 2);
+             var time = item..snippet.publishedAt.substr(11, 8);
+             
+             var monthString = MONTH_NAMES[monthInt - 1];
+             
+             viewObject.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
+             console.log('viewObject.displayTimeStamp is' + viewObject.displayTimeStamp);
+             viewObject.publishTimeStamp = item.snippet.publishedAt;
+             console.log('viewObject.publishTimeStamp is' + viewObject.publishTimeStamp);
+        /*   
+        videoResult.videoId = entryArr[i].id.videoId;
+        videoIDString = videoIDString + videoResult.videoId + ",";
+
+        videoResult.url = "https://www.youtube.com/watch?v=" + videoResult.videoId;
+        videoResult.channelID = entryArr[i].snippet.channelId;
+        videoResult.channel = entryArr[i].snippet.channelTitle;
+        videoResult.liveBroadcastContent = entryArr[i].snippet.liveBroadcastContent;
+        videoResult.thumbNailURL = entryArr[i].snippet.thumbnails.default.url;
+        videoResult.description = entryArr[i].snippet.description;
+
+        var year = entryArr[i].snippet.publishedAt.substr(0, 4);
+        var monthNumeric = entryArr[i].snippet.publishedAt.substr(5, 2);
+        var monthInt = 0;
+
+        if (monthNumeric.indexOf("0") === 0) {
+          monthInt = monthNumeric.substr(1, 1);
+        } else {
+          monthInt = monthNumeric;
+        }
+        var day = entryArr[i].snippet.publishedAt.substr(8, 2);
+        var time = entryArr[i].snippet.publishedAt.substr(11, 8);
+
+        var monthString = MONTH_NAMES[monthInt - 1];
+
+        videoResult.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
+        videoResult.publishTimeStamp = entryArr[i].snippet.publishedAt;
+        */   
+           
+           console.log("zebbie end");
+
         }
       }
- */     
+    
 }
 /**  This function displays a connectivity error to the end user in the event
  *  that we lose connectivity to one or more of the Google APIs
