@@ -663,7 +663,7 @@ function generateResultList() {
 		  "&uptime="+finalResults2[i].displayTimeStamp+
 		  "&channelID="+channelID+
 		  "&channel="+channel;
-    console.log("newURL_TEMP_STRING is "+newURL_TEMP_STRING)
+    console.log("videoURLString is "+videoURLString)
     
     var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + videoURLString + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
 
