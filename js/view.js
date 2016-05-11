@@ -28,13 +28,13 @@ var viewObject = {};
 /**   
   */
 $(document).ready(function() {
-  console.log("Yipppppppppppeeeeeeee0");
+  console.log("yavin0");
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
-  console.log("Yipppppppppppeeeeeeee1");
+  console.log("yavin1");
   generateVideoViewer();
-  console.log("Yipppppppppppeeeeeeee2");
+  console.log("yavin2");
   pullVideoMetaData();
-  console.log("Yipppppppppppeeeeeeee3");
+  console.log("yavin3");
 });
 
 function handleClientLoad() {
@@ -91,4 +91,41 @@ function generateVideoViewer(){
 
 function pullVideoMetaData(){
    console.log("zebra1")
+   
+         //generate request object for video search
+      var videoIDRequest = gapi.client.youtube.videos.list({
+        id: viewObject.inputVideoID,
+        part: 'id,snippet,recordingDetails',
+        key: API_ACCESS_KEY
+      });
+console.log("zebra2")
+      //execute request and process the response object to pull in latitude and longitude
+      videoIDRequest.execute(function(response) {
+        if ('error' in response || !response) {
+          showConnectivityError();
+        } else {
+          //iterate through the response items and execute a callback function for each
+          $.each(response.items, function() {
+            var videoRequestVideoId = this.id;
+            console.log("videoRequestVideoId is "+videoRequestVideoId)
+
+          });
+        }
+      }
+}
+/**  This function displays a connectivity error to the end user in the event
+ *  that we lose connectivity to one or more of the Google APIs
+ */
+function showConnectivityError() {
+  var div = $('<div>');
+  div.addClass('showErrors');
+  div.append("Error connecting to Google APIs");
+
+  $('#showErrorsContainer').empty();
+  $('#showErrorsContainer').append(div);
+  showErrorSection();
+}
+
+function showErrorSection() {
+  $("#showErrors").show();
 }
