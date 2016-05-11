@@ -510,6 +510,7 @@ function processYouTubeRequest(request) {
         videoIDString = videoIDString + videoResult.videoId + ",";
 
         videoResult.url = "https://www.youtube.com/watch?v=" + videoResult.videoId;
+        videoResult.videoID = videoResult.videoId;
         videoResult.channelID = entryArr[i].snippet.channelId;
         videoResult.channel = entryArr[i].snippet.channelTitle;
         videoResult.liveBroadcastContent = entryArr[i].snippet.liveBroadcastContent;
@@ -534,9 +535,6 @@ function processYouTubeRequest(request) {
 
         videoResult.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
         videoResult.publishTimeStamp = entryArr[i].snippet.publishedAt;
-
-        //videoResult.url = "view.html?v="+ videoResult.videoId +"&channelID="+videoResult.channelID+"&channel="+videoResult.channel + "&displayTimeStamp="+videoResult.displayTimeStamp;
-        //console.log("videoResult.url is"+videoResult.url)
 
         //add result to results
         resultsArr.push(videoResult);
@@ -657,8 +655,8 @@ function generateResultList() {
     var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=/view.html?v=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
     
     //Generate new URL string
-    /*
-    "https://www.youtube.com/watch?v=" + vid
+    var newURL_TEMP_STRING =
+    "/view.html?v=" + finalResults2[i].videoID
 		  "&turl="+finalResults2[i].thumbNailURL+
 		  "&desc="+finalResults2[i].description+
 		  "&vurl="+finalResults2[i].url+
@@ -666,7 +664,7 @@ function generateResultList() {
 		  "&uptime="+finalResults2[i].displayTimeStamp+
 		  "&channelID="+channelID+
 		  "&channel="+channel;
-    */
+    console.log("newURL_TEMP_STRING is "+newURL_TEMP_STRING)
     
     //var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
     metaDataCell.append(videoString);
