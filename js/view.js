@@ -112,16 +112,16 @@ function pullVideoMetaData(){
           console.log("zebbie start");
           $.each(response.items, function(index, item) {
              viewObject.title = item.snippet.title;
-             console.log('viewObject.title is' + viewObject.title);
+             console.log('viewObject.title is ' + viewObject.title);
              viewObject.channelID = item.snippet.channelId;
-             console.log('viewObject.channelID is + viewObject.channelID)
+             console.log('viewObject.channelID is ' + viewObject.channelID)
              viewObject.channel = item.snippet.channelTitle;
-             console.log('viewObject.channel is' + viewObject.channel);
-             viewObject.thumbnailURL = item..snippet.thumbnails.default.url;
-             console.log('viewObject.thumbnailURL is' + viewObject.thumbnailURL);
+             console.log('viewObject.channel is ' + viewObject.channel);
+             viewObject.thumbnailURL = item.snippet.thumbnails.default.url;
+             console.log('viewObject.thumbnailURL is ' + viewObject.thumbnailURL);
              viewObject.description = item.snippet.description;
-             console.log('viewObject.description is' + viewObject.description);
-             var year = item..snippet.publishedAt.substr(0, 4);
+             console.log('viewObject.description is ' + viewObject.description);
+             var year = item.snippet.publishedAt.substr(0, 4);
              var monthNumeric = item.snippet.publishedAt.substr(5, 2);
              var monthInt = 0;
              
@@ -136,9 +136,9 @@ function pullVideoMetaData(){
              var monthString = MONTH_NAMES[monthInt - 1];
              
              viewObject.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
-             console.log('viewObject.displayTimeStamp is' + viewObject.displayTimeStamp);
+             console.log('viewObject.displayTimeStamp is ' + viewObject.displayTimeStamp);
              viewObject.publishTimeStamp = item.snippet.publishedAt;
-             console.log('viewObject.publishTimeStamp is' + viewObject.publishTimeStamp);
+             console.log('viewObject.publishTimeStamp is ' + viewObject.publishTimeStamp);
         /*   
         videoResult.videoId = entryArr[i].id.videoId;
         videoIDString = videoIDString + videoResult.videoId + ",";
