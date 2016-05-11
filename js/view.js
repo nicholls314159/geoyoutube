@@ -28,20 +28,20 @@ var viewObject = {};
 /**   
   */
 $(document).ready(function() {
-  console.log("yavin0");
+  console.log("yavin0000");
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
-  console.log("yavin1");
-  generateVideoViewer();
-  console.log("yavin2");
-  pullVideoMetaData();
-  console.log("yavin3");
+  console.log("yavin9999");
 });
 
 function handleClientLoad() {
   gapi.client.load('youtube', 'v3', function() {
-     console.log("Yipppppppppppeeeeeeee0");
+     console.log("yavin0");
      loadParamsFromURL();
-     console.log("Yipppppppppppeeeeeeee2");
+     console.log("yavin1");
+     generateVideoViewer();
+     console.log("yavin2");
+     pullVideoMetaData();
+     console.log("yavin3");
   });
 }
 
@@ -92,7 +92,7 @@ function generateVideoViewer(){
 function pullVideoMetaData(){
    console.log("zebra1")
    
-         //generate request object for video search
+      //generate request object for video search
       var videoIDRequest = gapi.client.youtube.videos.list({
         id: viewObject.inputVideoID,
         part: 'id,snippet,recordingDetails',
