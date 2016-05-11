@@ -652,11 +652,10 @@ function generateResultList() {
     imageCell.append(imageString);
 
     //format meta-data section
-    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=/view.html?v=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
     
     //Generate new URL string
-    var newURL_TEMP_STRING =
-    "/view.html?v=" + finalResults2[i].videoID
+    var videoURLString =
+    "/view.html?v=" + finalResults2[i].videoID +
 		  "&turl="+finalResults2[i].thumbNailURL+
 		  "&desc="+finalResults2[i].description+
 		  "&vurl="+finalResults2[i].url+
@@ -666,6 +665,8 @@ function generateResultList() {
 		  "&channel="+channel;
     console.log("newURL_TEMP_STRING is "+newURL_TEMP_STRING)
     
+    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + videoURLString + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
+
     //var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
     metaDataCell.append(videoString);
     var uploadDate = "Uploaded on: " + finalResults2[i].displayTimeStamp + "<br>";
