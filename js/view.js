@@ -140,6 +140,7 @@ function pullVideoMetaData(){
              viewObject.publishTimeStamp = item.snippet.publishedAt;
              console.log('viewObject.publishTimeStamp is ' + viewObject.publishTimeStamp);
              console.log("zebbie end");
+          }
         }
       });
     
