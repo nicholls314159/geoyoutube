@@ -131,7 +131,7 @@ function pullVideoMetaData(){
                  monthInt = monthNumeric;
              }
              var day = item.snippet.publishedAt.substr(8, 2);
-             var time = item..snippet.publishedAt.substr(11, 8);
+             var time = item.snippet.publishedAt.substr(11, 8);
              
              var monthString = MONTH_NAMES[monthInt - 1];
              
