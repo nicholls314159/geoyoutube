@@ -175,7 +175,7 @@ a {
 
 }
 
-.videoview-content {
+#videoview-content {
   width: 500px;
   float: left;
   position: relative;
