@@ -27,6 +27,9 @@ var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 //inputObject contains all the inputs from the User
 var viewObject = {};
 
+//Retrieve the domain from the existing URL, to construct the new URL
+var currentURL = String(window.location);
+
 /**   
   */
 $(document).ready(function() {
@@ -142,9 +145,50 @@ function pullVideoMetaData(){
              console.log("zebbie end");
           });
         }
+        //////make call to next method here to avoid race condition
       });
     
 }
+
+function populateVideoMetaData(){
+
+    //if channel name is blank then use channel ID 
+    if (!viewObject.channel) {
+      viewObject.channel = viewObject.channelID;
+    }
+ 
+    var resultRow = $('<tr>');
+    var imageCell = $('<td width=100>');
+    var metaDataCell = $('<td width=350 valign=top>');
+
+    //format image section
+    var imageString = "<img src='" + viewObject.thumbnailURL + "' height='100' width='100'/>";
+    imageCell.append(imageString);
+
+    //format meta-data section
+    var videoString = "<attr title='Description: " + viewObject.description + "'><a href=" + currentURL + ">" + viewObject.title + "</a></attr><br>";
+    metaDataCell.append(videoString);
+    var uploadDate = "Uploaded on: " + viewObject.displayTimeStamp + "<br>";
+    var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
+    var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
+
+    metaDataCell.append(uploadDate);
+    metaDataCell.append(channelString);
+    metaDataCell.append(reverseImageString);
+    
+    resultRow.append(metaDataCell);
+    tableDefinition.append(resultRow);
+
+    //show results in a table on UI
+    tableOfVideoContent_div.append(tableDefinition);
+    $('#tableOfVideoViewContentResults').append(tableOfVideoContent_div);
+
+    //ensure table is nested in 'video-container' div for proper formatting
+    div.append(tableOfVideoContent_div);
+    $('#videoview-container').append(div);
+}
+
+
 /**  This function displays a connectivity error to the end user in the event
  *  that we lose connectivity to one or more of the Google APIs
  */
