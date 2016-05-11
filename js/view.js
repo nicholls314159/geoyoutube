@@ -94,7 +94,7 @@ function generateVideoViewer(){
 }
 
 function pullVideoMetaData(){
-      console.log("zebra1")
+      console.log("zebra1");
    
       //generate request object for video search
       var videoIDRequest = gapi.client.youtube.videos.list({
@@ -139,39 +139,9 @@ function pullVideoMetaData(){
              console.log('viewObject.displayTimeStamp is ' + viewObject.displayTimeStamp);
              viewObject.publishTimeStamp = item.snippet.publishedAt;
              console.log('viewObject.publishTimeStamp is ' + viewObject.publishTimeStamp);
-        /*   
-        videoResult.videoId = entryArr[i].id.videoId;
-        videoIDString = videoIDString + videoResult.videoId + ",";
-
-        videoResult.url = "https://www.youtube.com/watch?v=" + videoResult.videoId;
-        videoResult.channelID = entryArr[i].snippet.channelId;
-        videoResult.channel = entryArr[i].snippet.channelTitle;
-        videoResult.liveBroadcastContent = entryArr[i].snippet.liveBroadcastContent;
-        videoResult.thumbNailURL = entryArr[i].snippet.thumbnails.default.url;
-        videoResult.description = entryArr[i].snippet.description;
-
-        var year = entryArr[i].snippet.publishedAt.substr(0, 4);
-        var monthNumeric = entryArr[i].snippet.publishedAt.substr(5, 2);
-        var monthInt = 0;
-
-        if (monthNumeric.indexOf("0") === 0) {
-          monthInt = monthNumeric.substr(1, 1);
-        } else {
-          monthInt = monthNumeric;
+             console.log("zebbie end");
         }
-        var day = entryArr[i].snippet.publishedAt.substr(8, 2);
-        var time = entryArr[i].snippet.publishedAt.substr(11, 8);
-
-        var monthString = MONTH_NAMES[monthInt - 1];
-
-        videoResult.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
-        videoResult.publishTimeStamp = entryArr[i].snippet.publishedAt;
-        */   
-           
-           console.log("zebbie end");
-
-        }
-      }
+      });
     
 }
 /**  This function displays a connectivity error to the end user in the event
