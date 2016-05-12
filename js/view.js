@@ -153,9 +153,9 @@ function pullVideoMetaData(){
 }
 
 function populateVideoMetaData(){
-    var div = $('<div>');
+    var div2 = $('<div>');
     //div.attr('id', 'videoview-container');
-    div.addClass('videoview-container');
+    div2.addClass('videoview-container');
 
     var tableOfVideoViewContent_div = $('<div>');
     tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
@@ -180,7 +180,7 @@ function populateVideoMetaData(){
     imageCell.append(imageString);
 
     //format meta-data section
-    var videoString = "<attr title='Description: " + viewObject.description + "'><a href=" + currentURL + ">" + viewObject.title + "</a></attr><br>";
+    var videoString = $("<attr title='Description: " + viewObject.description + "'><a href=" + currentURL + ">" + viewObject.title + "</a></attr><br>");
     var uploadDate = "Uploaded on: " + viewObject.displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
