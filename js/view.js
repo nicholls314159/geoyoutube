@@ -159,7 +159,7 @@ function populateVideoMetaData(){
     var tableOfVideoViewContent_div = $('<div>');
     tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
 
-    var tableDefinition = $('<table border='1'>');
+    var tableDefinition = $('<table border="1">');
     tableDefinition.attr('width', '900');
     tableDefinition.attr('cellpadding', '5');
     
