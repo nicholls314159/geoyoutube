@@ -91,7 +91,7 @@ function generateVideoViewer(){
     console.log("donkey balls 1");
     var div = $('<div>');
     div.addClass('videoPlayer');
-    var embeddedVideoPlayer = $('<iframe width="900" height="506" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'" frameborder="0" allowfullscreen></iframe>');	
+    var embeddedVideoPlayer = $('<iframe width="700" height="393" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'" frameborder="0" allowfullscreen></iframe>');	
     $('#videoPlayer').append(embeddedVideoPlayer);
     console.log("donkey balls 2");
 }
@@ -154,13 +154,12 @@ function pullVideoMetaData(){
 
 function populateVideoMetaData(){
     var div2 = $('<div>');
-    //div.attr('id', 'videoview-container');
     div2.addClass('videoview-container');
 
     var tableOfVideoViewContent_div = $('<div>');
     tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
 
-    var tableDefinition = $('<table>');
+    var tableDefinition = $('<table border='1'>');
     tableDefinition.attr('width', '900');
     tableDefinition.attr('cellpadding', '5');
     
@@ -168,12 +167,11 @@ function populateVideoMetaData(){
     if (!viewObject.channel) {
       viewObject.channel = viewObject.channelID;
     }
- 
-    var resultRow_RIGHT = $('<tr>');
+    //var resultRow_RIGHT = $('<tr>');
     var resultRow = $('<tr>');
     var imageCell = $('<td width=100 align=left>');
     var metaDataCell = $('<td width=800 valign=top align=left>');
-    var metaDataCell_RIGHT = $('<td width=800 align=right valign=top>');
+    var socialCell = $('<td align=right valign=top>');
 
     //format image section
     var imageString = "<img src='" + viewObject.thumbnailURL + "' height='100' width='100'/>";
@@ -188,26 +186,25 @@ function populateVideoMetaData(){
     var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
     console.log("facebookString is "+facebookString)
 
-    metaDataCell_RIGHT.append(facebookString);
     metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
     
-    resultRow_RIGHT.append(metaDataCell_RIGHT);
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
-    tableDefinition.append(resultRow_RIGHT);
+    resultRow.append(socialCell);
+    
     tableDefinition.append(resultRow);
     console.log("tableDefinition  is "+ tableDefinition)
 
     //show results in a table on UI
     tableOfVideoViewContent_div.append(tableDefinition);
-   $('#tableOfVideoViewContentResults').append(tableOfVideoViewContent_div);
+    $('#tableOfVideoViewContentResults').append(tableOfVideoViewContent_div);
 
     //ensure table is nested in 'video-container' div for proper formatting
     div2.append(tableOfVideoViewContent_div);
-    $('#videoview-container').append(tableOfVideoViewContent_div);
+    $('#videoview-container').append(div2);
 }
 
 function hideErrorContainer() {
