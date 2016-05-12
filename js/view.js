@@ -155,8 +155,9 @@ function pullVideoMetaData(){
 function populateVideoMetaData(){
     var div = $('<div>');
     div.addClass('videoview-content');
+    
     var tableOfVideoViewContent_div = $('<div>');
-    div.addClass('tableOfVideoViewContentResults');
+    tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
 
     var tableDefinition = $('<table>');
     tableDefinition.attr('width', '900');
