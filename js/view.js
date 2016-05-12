@@ -160,7 +160,7 @@ function populateVideoMetaData(){
     tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
 
     var tableDefinition = $('<table border="1">');
-    tableDefinition.attr('width', '900');
+    tableDefinition.attr('width', '500');
     tableDefinition.attr('cellpadding', '5');
     
     //if channel name is blank then use channel ID 
@@ -170,8 +170,8 @@ function populateVideoMetaData(){
     //var resultRow_RIGHT = $('<tr>');
     var resultRow = $('<tr>');
     var imageCell = $('<td width=100 align=left>');
-    var metaDataCell = $('<td width=800 valign=top align=left>');
-    var socialCell = $('<td align=right valign=top>');
+    var metaDataCell = $('<td width=300 valign=top align=left>');
+    var socialCell = $('<td width=100 align=right valign=top>');
 
     //format image section
     var imageString = "<img src='" + viewObject.thumbnailURL + "' height='100' width='100'/>";
