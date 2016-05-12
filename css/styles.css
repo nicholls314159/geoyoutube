@@ -201,7 +201,7 @@ a {
   color: white;
 }
 
-.showErrors {
+#showErrors {
   margin: 20px;
   color: red;
 }
