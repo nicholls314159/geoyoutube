@@ -185,6 +185,10 @@ function populateVideoMetaData(){
 
     var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
     console.log("facebookString is "+facebookString)
+    
+    //var fbDiv = $('<div>');
+    //fbDiv.addClass('fb-share-button');
+    socialCell.append(facebookString);
 
     metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
