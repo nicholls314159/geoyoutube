@@ -175,7 +175,7 @@ a {
 
 }
 
-.videoview-content {
+.videoview-container {
   width: 500px;
   float: left;
   position: relative;
@@ -185,7 +185,6 @@ a {
   padding: 5px;
   border-radius: 10px 10px 10px 10px;
   color: white;
-
 }
 
 #map-canvas {
