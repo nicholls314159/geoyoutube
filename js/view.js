@@ -169,12 +169,12 @@ function populateVideoMetaData(){
  
     var resultRow_RIGHT = $('<tr>');
     var resultRow = $('<tr>');
-    var imageCell = $('<td width=200>');
-    var metaDataCell = $('<td width=700 valign=top>');
-    var metaDataCell_RIGHT = $('<td width=700 align=right valign=top>');
+    var imageCell = $('<td width=100 align=left>');
+    var metaDataCell = $('<td width=800 valign=top align=left>');
+    var metaDataCell_RIGHT = $('<td width=800 align=right valign=top>');
 
     //format image section
-    var imageString = "<img src='" + viewObject.thumbnailURL + "' height='200' width='200'/>";
+    var imageString = "<img src='" + viewObject.thumbnailURL + "' height='100' width='100'/>";
     imageCell.append(imageString);
 
     //format meta-data section
@@ -184,7 +184,7 @@ function populateVideoMetaData(){
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
 
     var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
-
+    console.log("facebookString is "+facebookString)
 
     metaDataCell_RIGHT.append(facebookString);
     metaDataCell.append(videoString);
@@ -197,6 +197,7 @@ function populateVideoMetaData(){
     resultRow.append(metaDataCell);
     tableDefinition.append(resultRow_RIGHT);
     tableDefinition.append(resultRow);
+    console.log("tableDefinition  is "+ tableDefinition)
 
     //show results in a table on UI
     tableOfVideoViewContent_div.append(tableDefinition);
