@@ -206,7 +206,7 @@ function populateVideoMetaData(){
    $('#tableOfVideoViewContentResults').append(tableOfVideoViewContent_div);
 
     //ensure table is nested in 'video-container' div for proper formatting
-    div.append(tableOfVideoViewContent_div);
+    div2.append(tableOfVideoViewContent_div);
     $('#videoview-container').append(tableOfVideoViewContent_div);
 }
 
@@ -218,9 +218,9 @@ function hideErrorContainer() {
  *  that we lose connectivity to one or more of the Google APIs
  */
 function showConnectivityError() {
-  var div = $('<div>');
-  div.addClass('showErrors');
-  div.append("Error connecting to Google APIs");
+  var div3 = $('<div>');
+  div3.addClass('showErrors');
+  div3.append("Error connecting to Google APIs");
 
   $('#showErrorsContainer').empty();
   $('#showErrorsContainer').append(div);
