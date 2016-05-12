@@ -154,7 +154,8 @@ function pullVideoMetaData(){
 
 function populateVideoMetaData(){
     var div = $('<div>');
-    div.attr('id', 'videoview-container');
+    //div.attr('id', 'videoview-container');
+    div.addClass('videoview-container');
 
     var tableOfVideoViewContent_div = $('<div>');
     tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
@@ -205,8 +206,8 @@ function populateVideoMetaData(){
    $('#tableOfVideoViewContentResults').append(tableOfVideoViewContent_div);
 
     //ensure table is nested in 'video-container' div for proper formatting
-    div.append(tableOfVideoContent_div);
-    $('#videoview-container').append(tableOfVideoContent_div);
+    div.append(tableOfVideoViewContent_div);
+    $('#videoview-container').append(tableOfVideoViewContent_div);
 }
 
 function hideErrorContainer() {
