@@ -186,16 +186,16 @@ function populateVideoMetaData(){
     var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
     console.log("facebookString is "+facebookString)
     
-    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-size="large" data-hashtags="geosearchtool">Tweet</a>'
-var twitterString2 = '<div class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-size="large" data-hashtags="geosearchtool"></div>'
+    //var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-size="large" data-hashtags="geosearchtool">Tweet</a>'
+//var twitterString2 = '<div class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-size="large" data-hashtags="geosearchtool"></div>'
 
     //var fbDiv = $('<div>');
     //fbDiv.addClass('fb-share-button');
     socialCell.append(facebookString);
-    socialCell.append('<br>');
-    socialCell.append(twitterString);
-socialCell.append('<br>');
-    socialCell.append(twitterString2);
+    //socialCell.append('<br>');
+    //socialCell.append(twitterString);
+//socialCell.append('<br>');
+    //socialCell.append(twitterString2);
     metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
