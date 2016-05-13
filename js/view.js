@@ -179,9 +179,16 @@ function populateVideoMetaData(){
 
     //format meta-data section
     var videoString = $("<attr title='Description: " + viewObject.description + "'><a href=" + currentURL + ">" + viewObject.title + "</a></attr><br>");
+    var videoDesc = "Description: " + viewObject.description + "<br>";
     var uploadDate = "Uploaded on: " + viewObject.displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
+
+    var metaTags = '<meta property="og:type" content="video.other" />'+
+    +'<meta property="og:url"  content="http://www.geosearchtool.com" />' 
+    +'<meta property="og:title" content="Check out this Video!!!" /> '
+    +'<meta property="og:image" content="http://www.geosearchtool.com/images/joshuaTree.png" /> 
+    +'<meta property="og:description" content='+viewObject.description+'/>'
 
 
     var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
@@ -198,9 +205,11 @@ function populateVideoMetaData(){
     socialCell.append(twitterString);
     socialCell.append(twitterString2);
     metaDataCell.append(videoString);
+    metaDataCell.append(videoDesc);
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
+    metaDataCell.append(metaTags);
     
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
