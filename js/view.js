@@ -30,8 +30,6 @@ var viewObject = {};
 //Retrieve the domain from the existing URL, to construct the new URL
 var currentURL = String(window.location);
 
-//Store current domain - used for URL construction to work between test and production env
-var currentDomain = '';
 
 /**   
   */
@@ -59,9 +57,6 @@ function loadParamsFromURL() {
     //create an array of parameters parsed from URL
     console.log('cutting up start url '+startURL.slice(startURL.indexOf('?v=') + 1));
     var paramListCollection = startURL.slice(startURL.indexOf('?v=') + 1).split("&");
-
-    var currentDomain = paramListCollection = startURL.slice(startURL.indexOf('?v='))
-    console.log("currentDomain " + currentDomain);
 
     //define the urlParams array
     var urlParams = {};
@@ -242,5 +237,5 @@ function showErrorSection() {
 function clickedSearchButton() {
  
   console.log("document.referrer is ..."+document.referrer);
-  window.history.back();
+  //window.history.back();
 }
