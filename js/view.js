@@ -235,3 +235,10 @@ function showConnectivityError() {
 function showErrorSection() {
   $("#showErrors").show();
 }
+
+/** This method handle search button clicks.   It pulls data from the web
+ * form into the inputObject and then calls the search function.
+ */
+function clickedSearchButton() {
+ window.location.href = "http://www.geosearchtool.com";
+}
