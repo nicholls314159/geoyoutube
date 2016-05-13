@@ -646,6 +646,7 @@ function generateResultList() {
     var imageCell = $('<td width=100>');
     var metaDataCell = $('<td width=350 valign=top>');
     var rankCell = $('<td>');
+    var socialCell = $('<td>');
 
     //format image section
     var imageString = "<img src='" + finalResults2[i].thumbNailURL + "' height='100' width='100'/>";
@@ -703,7 +704,8 @@ function generateResultList() {
     //Put all the sections of the row together
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
-    resultRow.append(rankCell);
+    //resultRow.append(rankCell);
+    resultRow.append(socialCell);
     tableDefinition.append(resultRow);
   }
   //show results in a table on UI
