@@ -28,7 +28,10 @@ var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 var viewObject = {};
 
 //Retrieve the domain from the existing URL, to construct the new URL
-var currentURL = String(window.location);
+//var currentURL = String(window.location);
+
+//Retrieve the domain from the existing URL, to construct the new URL
+var startURL = ''
 
 
 /**   
@@ -49,7 +52,7 @@ function handleClientLoad() {
  */
 function loadParamsFromURL() {
   //retrieve URL from browser window
-  var startURL = decodeURIComponent(window.location);
+  startURL = decodeURIComponent(window.location);
   console.log("StartURL:  " + startURL);
   
   //If the URL does not contain search parameters to parse skip to end of function
