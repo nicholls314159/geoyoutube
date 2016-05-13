@@ -667,7 +667,7 @@ function generateResultList() {
     */
     console.log("videoURLString is "+videoURLString)
     
-    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href='" + videoURLString + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
+    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href='" + videoURLString + "'>" + finalResults2[i].title + "</a></attr><br>";
 
     //var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
     metaDataCell.append(videoString);
