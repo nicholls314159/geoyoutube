@@ -252,5 +252,7 @@ function showErrorSection() {
  * form into the inputObject and then calls the search function.
  */
 function clickedSearchButton() {
+ 
+  console.log("document.referrer is ..."+document.referrer);
   window.history.back();
 }
