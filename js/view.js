@@ -28,11 +28,7 @@ var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 var viewObject = {};
 
 //Retrieve the domain from the existing URL, to construct the new URL
-//var currentURL = String(window.location);
-
-//Retrieve the domain from the existing URL, to construct the new URL
 var startURL = ''
-
 
 /**   
   */
@@ -165,7 +161,7 @@ function populateVideoMetaData(){
     imageCell.append(imageString);
 
     //format meta-data section
-    var videoString = $("<attr title='Description: " + viewObject.description + "'><a href=" + currentURL + ">" + viewObject.title + "</a></attr><br>");
+    var videoString = $("<attr title='Description: " + viewObject.description + "'><a href=" + startURL + ">" + viewObject.title + "</a></attr><br>");
     var videoDesc = "Description: " + viewObject.description + "<br>";
     var uploadDate = "Uploaded on: " + viewObject.displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
