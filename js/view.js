@@ -187,7 +187,7 @@ function populateVideoMetaData(){
     var metaTags = '<meta property="og:type" content="video.other" />'+
     +'<meta property="og:url"  content="http://www.geosearchtool.com" />' 
     +'<meta property="og:title" content="Check out this Video!!!" /> '
-    +'<meta property="og:image" content="http://www.geosearchtool.com/images/joshuaTree.png" /> 
+    +'<meta property="og:image" content="http://www.geosearchtool.com/images/joshuaTree.png" />'
     +'<meta property="og:description" content='+viewObject.description+'/>'
 
 
