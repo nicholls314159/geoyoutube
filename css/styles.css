@@ -132,6 +132,30 @@ a {
   font-size: 14px;
 }
 
+#search-button-back {
+  float: right;
+  background-image: linear-gradient(#8A8988, #636362);
+  border-radius: 10px 10px 10px 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  height: 50px;
+  width: 300px;
+  font-size: 18px;
+  color: white;
+}
+
+#search-button-back:hover {
+  background-image: linear-gradient(#636362, #8A8988);
+}
+
+##search-button-back:active {
+  background-image: linear-gradient(#8A8988, #636362);
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
 #search-button {
   float: left;
   background-image: linear-gradient(#8A8988, #636362);
@@ -175,6 +199,18 @@ a {
 
 }
 
+.videoview-container {
+  width: 500px;
+  float: left;
+  position: relative;
+  border-width: thin;
+  border-style: solid;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px 10px 10px 10px;
+  color: white;
+}
+
 #map-canvas {
   width: 500px;
   height: 500px;
@@ -188,7 +224,7 @@ a {
   color: white;
 }
 
-.showErrors {
+#showErrors {
   margin: 20px;
   color: red;
 }

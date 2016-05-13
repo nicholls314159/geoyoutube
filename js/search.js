@@ -510,10 +510,13 @@ function processYouTubeRequest(request) {
         videoIDString = videoIDString + videoResult.videoId + ",";
 
         videoResult.url = "https://www.youtube.com/watch?v=" + videoResult.videoId;
+        videoResult.videoID = videoResult.videoId;
         videoResult.channelID = entryArr[i].snippet.channelId;
         videoResult.channel = entryArr[i].snippet.channelTitle;
         videoResult.liveBroadcastContent = entryArr[i].snippet.liveBroadcastContent;
         videoResult.thumbNailURL = entryArr[i].snippet.thumbnails.default.url;
+        
+        
         videoResult.description = entryArr[i].snippet.description;
 
         var year = entryArr[i].snippet.publishedAt.substr(0, 4);
@@ -643,13 +646,21 @@ function generateResultList() {
     var imageCell = $('<td width=100>');
     var metaDataCell = $('<td width=350 valign=top>');
     var rankCell = $('<td>');
+    var socialCell = $('<td>');
 
     //format image section
     var imageString = "<img src='" + finalResults2[i].thumbNailURL + "' height='100' width='100'/>";
     imageCell.append(imageString);
 
-    //format meta-data section
-    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
+    
+    //Generate new URL string
+    var videoURLString =
+    "/view.html?v="+finalResults2[i].videoID;
+    console.log("videoURLString is "+videoURLString)
+    
+    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href='" + videoURLString + "'>" + finalResults2[i].title + "</a></attr><br>";
+
+    //var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
     metaDataCell.append(videoString);
     var uploadDate = "Uploaded on: " + finalResults2[i].displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + channelID + "' target='_blank'>" + channel + "</a></attr><br>";
@@ -663,11 +674,28 @@ function generateResultList() {
     var rank = i + 1;
     var imageNumberRank = '<h2>' + rank + '</h2><br>';
     rankCell.append(imageNumberRank);
+    
+    var videoURLStringLong = "http://www.geosearchtool.com"+videoURLString
+    var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
+    var faceString = '<div class="fb-share-button" data-href="'+videoURLStringLong+'" data-layout="button" data-mobile-iframe="true"></div>'
+    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+videoURLStringLong+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+    var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+
+    socialCell.append('<br>');
+    socialCell.append('<br>');
+    socialCell.append(faceString0);
+    socialCell.append(faceString);
+    socialCell.append('<br>');
+    socialCell.append('<br>');
+    socialCell.append(twitterString);
+    socialCell.append(twitterString2);
+
 
     //Put all the sections of the row together
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
-    resultRow.append(rankCell);
+    //resultRow.append(rankCell);
+    resultRow.append(socialCell);
     tableDefinition.append(resultRow);
   }
   //show results in a table on UI
