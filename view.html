@@ -44,9 +44,18 @@ Author:  Stephen Nicholls, May 9, 2016
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <!-- end snippet -->
-	<table id='viewerTable' align='center' valign='middle' cellpadding="60">
+<!-- snippet to share on Twitter -->
+<script>!function(d,s,id){
+var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+if(!d.getElementById(id)){js=d.createElement(s);
+js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+fjs.parentNode.insertBefore(js,fjs);
+}}(document, 'script', 'twitter-wjs');</script>
+<!-- end snippet -->
+	<table id='viewerTable' align='center' valign='middle'>
 		<tr>
 			<td valign='middle'>
+				<table id='viewerTable' align='center' valign='middle' cellpadding="60"><tr><td></td></tr></table>
 				<div id="showErrorsContainer2">
 				      <div class="showErrors"></div>
       				</div>
@@ -54,6 +63,11 @@ Author:  Stephen Nicholls, May 9, 2016
 		</tr>
 		
 		<tr>
+			<td>
+				<!--
+				<table id='viewerTable' align='center' valign='middle' cellpadding="60"><tr><td></td></tr></table>
+				-->
+			</td>
 			<td align="center" valign='middle'>
 				<div id="videoPlayer"></div>
 			</td>
