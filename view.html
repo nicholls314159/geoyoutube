@@ -44,14 +44,6 @@ Author:  Stephen Nicholls, May 9, 2016
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <!-- end snippet -->
-<!-- snippet to share on Twitter -->
-<script>!function(d,s,id){
-var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-if(!d.getElementById(id)){js=d.createElement(s);
-js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
-fjs.parentNode.insertBefore(js,fjs);
-}}(document, 'script', 'twitter-wjs');</script>
-<!-- end snippet -->
 	<table id='viewerTable' align='left' valign='middle'>
 		<tr>
 			<td valign='middle'>
@@ -76,9 +68,11 @@ fjs.parentNode.insertBefore(js,fjs);
         			    		<table class="tableOfVideoViewContentResults"></table>
           				</div>	
 					</td></tr>
-					<tr><td align='right'>
+					<tr><td width="100%" align='right'>
+						<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.cnn.com" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 						<form id="jt_search_form2" action="javascript:clickedSearchButton()">
-              					<input id="search-button-back" type="submit" value="Back to Geo Search">
+              					<input id="search-button-back" type="submit" value="Start New Geo Search">
               					</form>
 					</td></tr>
 				</table>
