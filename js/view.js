@@ -159,7 +159,7 @@ function populateVideoMetaData(){
     var tableOfVideoViewContent_div = $('<div>');
     tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
 
-    var tableDefinition = $('<table border="1">');
+    var tableDefinition = $('<table>');
     tableDefinition.attr('width', '500');
     tableDefinition.attr('cellpadding', '5');
     
@@ -183,17 +183,19 @@ function populateVideoMetaData(){
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
 
-    var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div><br>'
+    var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
     console.log("facebookString is "+facebookString)
     
     var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-size="large" data-hashtags="geosearchtool">Tweet</a>'
+var twitterString2 = '<div class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-size="large" data-hashtags="geosearchtool"></div>'
 
-    
     //var fbDiv = $('<div>');
     //fbDiv.addClass('fb-share-button');
     socialCell.append(facebookString);
+    socialCell.append('<br>');
     socialCell.append(twitterString);
-
+socialCell.append('<br>');
+    socialCell.append(twitterString2);
     metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
