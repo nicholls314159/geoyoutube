@@ -60,7 +60,7 @@ function loadParamsFromURL() {
     console.log('cutting up start url '+startURL.slice(startURL.indexOf('?v=') + 1));
     var paramListCollection = startURL.slice(startURL.indexOf('?v=') + 1).split("&");
 
-    var currentDomain = var paramListCollection = startURL.slice(startURL.indexOf('?v='))
+    var currentDomain = paramListCollection = startURL.slice(startURL.indexOf('?v='))
     console.log("currentDomain " + currentDomain);
 
     //define the urlParams array
