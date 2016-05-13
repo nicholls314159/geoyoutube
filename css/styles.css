@@ -133,7 +133,7 @@ a {
 }
 
 #search-button-back {
-  float: left;
+  float: right;
   background-image: linear-gradient(#8A8988, #636362);
   border-radius: 10px 10px 10px 10px;
   border-width: 1px;
