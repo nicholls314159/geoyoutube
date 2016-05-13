@@ -186,15 +186,14 @@ function populateVideoMetaData(){
     var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
     console.log("facebookString is "+facebookString)
     
-    //var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-size="large" data-hashtags="geosearchtool">Tweet</a>'
-//var twitterString2 = '<div class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-size="large" data-hashtags="geosearchtool"></div>'
+    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+    var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 
-    //var fbDiv = $('<div>');
-    //fbDiv.addClass('fb-share-button');
+
     socialCell.append(facebookString);
-    //socialCell.append('<br>');
-    //socialCell.append(twitterString);
-//socialCell.append('<br>');
+    
+    socialCell.append(twitterString);
+    socialCell.append(twitterString2);
     //socialCell.append(twitterString2);
     metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
