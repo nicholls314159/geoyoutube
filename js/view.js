@@ -183,19 +183,15 @@ function populateVideoMetaData(){
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
 
-    //var facebookString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
-    //console.log("facebookString is "+facebookString)
-    
     
     var faceString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
     console.log("faceString is "+faceString)
-    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
-    var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+    //var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+    //var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 
 
     socialCell.append(faceString);
-    socialCell.append(twitterString);
-    socialCell.append(twitterString2);
+    //socialCell.append(twitterString);
     //socialCell.append(twitterString2);
     metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
@@ -243,5 +239,5 @@ function showErrorSection() {
  * form into the inputObject and then calls the search function.
  */
 function clickedSearchButton() {
- window.location.href = "http://www.geosearchtool.com";
+  window.history.back();
 }
