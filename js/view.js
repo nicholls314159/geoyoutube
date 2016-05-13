@@ -30,25 +30,20 @@ var viewObject = {};
 //Retrieve the domain from the existing URL, to construct the new URL
 var currentURL = String(window.location);
 
+//Store current domain - used for URL construction to work between test and production env
+var currentDomain = '';
+
 /**   
   */
 $(document).ready(function() {
-  console.log("yavin0000");
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
-  console.log("yavin9999");
 });
 
 function handleClientLoad() {
   gapi.client.load('youtube', 'v3', function() {
-     console.log("yavin0");
      loadParamsFromURL();
-     console.log("yavin1");
      generateVideoViewer();
-     console.log("yavin2");
      pullVideoMetaData();
-     console.log("yavin3");
-     //populateVideoMetaData();
-     console.log("yavin4");
   });
 }
 
@@ -64,6 +59,9 @@ function loadParamsFromURL() {
     //create an array of parameters parsed from URL
     console.log('cutting up start url '+startURL.slice(startURL.indexOf('?v=') + 1));
     var paramListCollection = startURL.slice(startURL.indexOf('?v=') + 1).split("&");
+
+    var currentDomain = var paramListCollection = startURL.slice(startURL.indexOf('?v='))
+    console.log("currentDomain " + currentDomain);
 
     //define the urlParams array
     var urlParams = {};
@@ -88,31 +86,25 @@ function loadParamsFromURL() {
 /**
  */ 
 function generateVideoViewer(){
-    console.log("donkey balls 1");
     var div = $('<div>');
     div.addClass('videoPlayer');
     var embeddedVideoPlayer = $('<iframe width="700" height="393" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'" frameborder="0" allowfullscreen></iframe>');	
     $('#videoPlayer').append(embeddedVideoPlayer);
-    console.log("donkey balls 2");
 }
 
 function pullVideoMetaData(){
-      console.log("zebra1");
-   
       //generate request object for video search
       var videoIDRequest = gapi.client.youtube.videos.list({
         id: viewObject.inputVideoID,
         part: 'id,snippet',
         key: API_ACCESS_KEY
       });
-      console.log("zebra2")
 
       //execute request and process the response object to pull in latitude and longitude
       videoIDRequest.execute(function(response) {
         if ('error' in response || !response) {
           showConnectivityError();
         } else {
-          console.log("zebbie start");
           $.each(response.items, function(index, item) {
              viewObject.title = item.snippet.title;
              console.log('viewObject.title is ' + viewObject.title);
@@ -142,12 +134,9 @@ function pullVideoMetaData(){
              console.log('viewObject.displayTimeStamp is ' + viewObject.displayTimeStamp);
              viewObject.publishTimeStamp = item.snippet.publishedAt;
              console.log('viewObject.publishTimeStamp is ' + viewObject.publishTimeStamp);
-             console.log("zebbie end");
           });
         }
-        console.log("zebra3")
         populateVideoMetaData();
-        console.log("zebra4")
       });
     
 }
@@ -192,8 +181,8 @@ function populateVideoMetaData(){
 
 
     var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-    var faceString = '<div class="fb-share-button" data-href="'+currentURL+'" data-layout="button" data-mobile-iframe="true"></div>'
-    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+currentURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+    var faceString = '<div class="fb-share-button" data-href="'+startURL+'" data-layout="button" data-mobile-iframe="true"></div>'
+    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+startURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
     var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 
     socialCell.append('<br>');
@@ -216,7 +205,6 @@ function populateVideoMetaData(){
     resultRow.append(socialCell);
     
     tableDefinition.append(resultRow);
-    console.log("tableDefinition  is "+ tableDefinition)
 
     //show results in a table on UI
     tableOfVideoViewContent_div.append(tableDefinition);
