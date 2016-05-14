@@ -85,12 +85,14 @@ function handleMapsLoad() {
 function loadSocialLinks(){
   //capture the URL for the page
    startURL = decodeURIComponent(window.location);
+   console.log("1 startURL " + startURL);
    //if its the first time the page has been loaded then provided vanity URL for Facebook and Twitter links
    if(startURL.includes('?authuser=0'))
    {
         startURL = "http://www.geosearchtool.com"
+        console.log("3 startURL " + startURL);
    }
-   
+   console.log("3 startURL " + startURL);
    
    var social_div = $('<div>');
    social_div.addClass('socialCell');  
@@ -104,6 +106,11 @@ function loadSocialLinks(){
    var faceString = '<div class="fb-share-button" data-href="'+startURL+'" data-layout="button" data-mobile-iframe="true"></div>'
    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+startURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
    var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+    
+  console.log("faceString0 is "+faceString0);
+  console.log("twitterString is "+twitterString);
+  
+    
     
    //socialCell.append('<br><br>');
    socialCell.append(faceString0);
