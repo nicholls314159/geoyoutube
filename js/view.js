@@ -131,7 +131,25 @@ function pullVideoMetaData(){
         }
         populateVideoMetaData();
       });
-    
+        //reset startURL with the latest
+      startURL = decodeURIComponent(window.location);
+      var requestShortener = gapi.client.urlshortener.url.insert({
+         'resource': {
+            'longUrl': startURL
+         }
+      });
+      requestShortener.execute(function(response2) 
+      {
+          console.log('turd1')
+          if(response2.id != null)
+          {
+             console.log('turd2')
+             shortURL = response2.id;
+             console.log('??shortURL is'+shortURL);
+          }else{
+             console.log("error: creating short url");
+          }
+      });
 }
 
 function populateVideoMetaData(){
