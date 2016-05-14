@@ -121,7 +121,6 @@ function pullVideoMetaData(){
              }
              var day = item.snippet.publishedAt.substr(8, 2);
              var time = item.snippet.publishedAt.substr(11, 8);
-             
              var monthString = MONTH_NAMES[monthInt - 1];
              
              viewObject.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
@@ -153,7 +152,7 @@ function populateVideoMetaData(){
     //var resultRow_RIGHT = $('<tr>');
     var resultRow = $('<tr>');
     var imageCell = $('<td width=100 align=left>');
-    var metaDataCell = $('<td width=300 valign=top align=left>');
+    var metaDataCell = $('<td width=300 valign=top align=left style="overflow:scroll;">');
     var socialCell = $('<td width=100 align=right valign=top>');
 
     //format image section
@@ -234,7 +233,11 @@ function showErrorSection() {
  * form into the inputObject and then calls the search function.
  */
 function clickedSearchButton() {
- 
-  console.log("document.referrer is ..."+document.referrer);
-  //window.history.back();
+   var dref = document.referrer
+   console.log('dref is'+dref)
+   if( dref.includes('/?q=&') ){
+      window.history.back();
+   }else{
+      window.location = "http://www.geosearchtool.com"
+   }
 }
