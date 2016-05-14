@@ -134,7 +134,7 @@ function pullVideoMetaData(){
              console.log('viewObject.publishTimeStamp is ' + viewObject.publishTimeStamp);
           });
         }
-        populateVideoMetaData();
+        
       });
         //reset startURL with the latest
       startURL = decodeURIComponent(window.location);
@@ -155,6 +155,7 @@ function pullVideoMetaData(){
              console.log("error: creating short url");
           }
       });
+      populateVideoMetaData();
 }
 
 function populateVideoMetaData(){
