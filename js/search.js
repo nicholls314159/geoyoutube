@@ -83,16 +83,21 @@ function handleMapsLoad() {
 }
 
 function loadSocialLinks(){
-  
-   //capture the URL for the page
+  //capture the URL for the page
    startURL = decodeURIComponent(window.location);
    //if its the first time the page has been loaded then provided vanity URL for Facebook and Twitter links
    if(startURL.includes('?authuser=0'))
    {
         startURL = "http://www.geosearchtool.com"
    }
+   
+   
    var social_div = $('<div>');
    social_div.addClass('socialCell');  
+
+  var socialTableDefinition = $('<table>');
+  var socialRow = $('<tr>');
+   
    
    var socialCell = $('<td>');
    var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
@@ -106,10 +111,12 @@ function loadSocialLinks(){
    socialCell.append('&nbsp;&nbsp;&nbsp;');
    socialCell.append(twitterString);
    socialCell.append(twitterString2);
-   social_div.append(socialCell);
+   
+   socialRow.append(socialCell);
+   socialTableDefinition.append(socialRow);
+   social_div.append(socialTableDefinition);
    $('#socialCell').append(social_div);
 
-  
 }
 
 /**
