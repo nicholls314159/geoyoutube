@@ -177,7 +177,7 @@ function populateVideoMetaData(){
     //var resultRow_RIGHT = $('<tr>');
     var resultRow = $('<tr>');
     var imageCell = $('<td width=100 align=left>');
-    var metaDataCell = $('<td width=300 valign=top align=left style="overflow:scroll;"');
+    var metaDataCell = $('<td width=300 valign=top align=left');
     var socialCell = $('<td width=100 align=right valign=top>');
 
     //format image section
