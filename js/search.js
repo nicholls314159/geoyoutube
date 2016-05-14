@@ -667,7 +667,7 @@ function processYouTubeRequest(request) {
   });
   
   /////
-  var longURL=document.getElementById("longurl").value;
+  //var longURL=document.getElementById("longurl").value;
   console.log("longURL is "+longURL)
   var requestShortener = gapi.client.urlshortener.url.insert({
     'resource': {
