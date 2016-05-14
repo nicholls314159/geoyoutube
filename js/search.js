@@ -54,7 +54,10 @@ var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 
 var CAR_REGEX = /\d{4} (?:dodge|chevy|ford|toyota|bmw|mercedes|honda|chrysler|pontiac|hyundai|audi|jeep|scion|cadillac|volks|acura|lexus|suburu|nissan|mazda|suzuki|buick|gmc|chevrolet|lincoln|infiniti|mini|hummer|porsche|volvo|land|kia|saturn|mitsubishi)/i;
 
+//Current page URL for access params
 var startURL = '';
+
+//URL generated from Google Shortener service, for use in tweets and FB posts
 var shortURL = '';
 
 
@@ -65,8 +68,6 @@ $(document).ready(function() {
   hideSearchFilters();
   resetResultsSection();
   displayCustomRangeSection();
-  
-
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
 });
 
@@ -88,13 +89,9 @@ function handleMapsLoad() {
 
 
 function loadSocialLinks(){
-  //capture the URL for the page
-   //startURL = decodeURIComponent(window.location);
-   //console.log("1 startURL " + startURL);
-   
-   
-   //if its the first time the page has been loaded then provided vanity URL for Facebook and Twitter links
-   if(startURL.includes('?authuser=0'))
+   //if its the first time the page has been loaded and short url is not available
+   //then provided vanity URL for Facebook and Twitter links
+   if((startURL.includes('?authuser=0')) && (shortURL.length < 2))
    {
         shortURL = "http://www.geosearchtool.com"
         console.log("2 shortURL " + shortURL);
@@ -672,21 +669,19 @@ function processYouTubeRequest(request) {
   var requestShortener = gapi.client.urlshortener.url.insert({
     'resource': {
      'longUrl': startURL
-     //'longUrl': longURL
-	}
-    });
-    console.log('turd0')
-    requestShortener.execute(function(response2) 
-	{
-		console.log('turd1')
-		if(response2.id != null)
-		{
-		  console.log('turd2')
-		  shortURL = response2.id;
-		  console.log('??shortURL is'+shortURL);
-		}else{
-			alert("error: creating short url");
-		}
+    }
+  });
+  requestShortener.execute(function(response2) 
+  {
+     console.log('turd1')
+     if(response2.id != null)
+     {
+        console.log('turd2')
+        shortURL = response2.id;
+        console.log('??shortURL is'+shortURL);
+      }else{
+         console.log("error: creating short url");
+      }
   });
   
   
