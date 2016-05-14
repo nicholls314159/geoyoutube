@@ -73,7 +73,8 @@ $(document).ready(function() {
 function handleClientLoad() {
   gapi.client.load('youtube', 'v3', function() {
     $.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&callback=handleMapsLoad&key=' + API_ACCESS_KEY);
-    gapi.client.load('urlshortener', 'v1');
+    gapi.client.setApiKey(API_ACCESS_KEY); 
+    gapi.client.load('urlshortener', 'v1',function(){});
   });
 }
 
@@ -676,7 +677,7 @@ function processYouTubeRequest(request) {
 		if(response.id != null)
 		{
 		  shortURL = response.id;
-		  console.log('shortURL is'+shortURL);
+		  console.log('??shortURL is'+shortURL);
 		}else{
 			alert("error: creating short url");
 		}
