@@ -667,20 +667,20 @@ function processYouTubeRequest(request) {
   });
   
   /////
-  var request = gapi.client.urlshortener.url.insert({
+  var requestShortener = gapi.client.urlshortener.url.insert({
     'resource': {
      // 'longUrl': startURL
      'longUrl': 'http://www.cnn.com'
 	}
     });
     console.log('turd0')
-    request.execute(function(response) 
+    requestShortener.execute(function(response2) 
 	{
 		console.log('turd1')
-		if(response.id != null)
+		if(response2.id != null)
 		{
 		  console.log('turd2')
-		  shortURL = response.id;
+		  shortURL = response2.id;
 		  console.log('??shortURL is'+shortURL);
 		}else{
 			alert("error: creating short url");
