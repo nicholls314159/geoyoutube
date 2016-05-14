@@ -28,10 +28,10 @@ var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 var viewObject = {};
 
 //Retrieve the domain from the existing URL, to construct the new URL
-var startURL = ''
+var startURL = '';
 
 //URL from Google Shortening service for Facebook and Tweeter
-var shortURL = ''
+var shortURL = '';
 
 /**   
   */
@@ -154,8 +154,9 @@ function pullVideoMetaData(){
           }else{
              console.log("error: creating short url");
           }
+          populateVideoMetaData();
       });
-      populateVideoMetaData();
+      
 }
 
 function populateVideoMetaData(){
@@ -165,9 +166,10 @@ function populateVideoMetaData(){
     var tableOfVideoViewContent_div = $('<div>');
     tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
 
-    var tableDefinition = $('<table style="table-layout: fixed;">');
+    var tableDefinition = $('<table>');
     tableDefinition.attr('width', '500');
     tableDefinition.attr('cellpadding', '5');
+    tableDefinition.attr('style','table-layout: fixed;')
     
     //if channel name is blank then use channel ID 
     if (!viewObject.channel) {
@@ -209,6 +211,9 @@ function populateVideoMetaData(){
     var faceString = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button" data-mobile-iframe="true"></div>'
     var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
     var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+
+    console.log('faceString is '+faceString);
+    console.log('twitterString is '+twitterString);
 
     socialCell.append('<br><br>');
     socialCell.append(faceString0);
