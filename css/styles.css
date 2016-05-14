@@ -16,6 +16,8 @@
  *  @author:  Stephen Nicholls, March 10, 2014
  */
 
+.twitter-share-button[style] { vertical-align: text-bottom !important; }
+
 html {
   height: 100%
 }
