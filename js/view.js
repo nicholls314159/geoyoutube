@@ -165,7 +165,7 @@ function populateVideoMetaData(){
     var tableOfVideoViewContent_div = $('<div>');
     tableOfVideoViewContent_div.addClass('tableOfVideoViewContentResults');
 
-    var tableDefinition = $('<table>');
+    var tableDefinition = $('<table style="table-layout: fixed;">');
     tableDefinition.attr('width', '500');
     tableDefinition.attr('cellpadding', '5');
     
@@ -176,7 +176,7 @@ function populateVideoMetaData(){
     //var resultRow_RIGHT = $('<tr>');
     var resultRow = $('<tr>');
     var imageCell = $('<td width=100 align=left>');
-    var metaDataCell = $('<td width=300 valign=top align=left style="overflow:scroll;">');
+    var metaDataCell = $('<td width=300 valign=top align=left style="overflow:scroll;" style="word-wrap: break-word">');
     var socialCell = $('<td width=100 align=right valign=top>');
 
     //format image section
@@ -210,12 +210,10 @@ function populateVideoMetaData(){
     var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
     var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 
-    socialCell.append('<br>');
-    socialCell.append('<br>');
+    socialCell.append('<br><br>');
     socialCell.append(faceString0);
     socialCell.append(faceString);
-    socialCell.append('<br>');
-    socialCell.append('<br>');
+    socialCell.append('<br><br>');
     socialCell.append(twitterString);
     socialCell.append(twitterString2);
     metaDataCell.append(videoString);
