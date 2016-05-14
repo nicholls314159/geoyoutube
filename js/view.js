@@ -171,7 +171,15 @@ function populateVideoMetaData(){
     +'<meta property="og:title" content="Check out this Video!!!" /> '
     +'<meta property="og:image" content="http://www.geosearchtool.com/images/joshuaTree.png" />'
     +'<meta property="og:description" content='+viewObject.description+'/>'
-
+   
+   //if its the first time the page has been loaded and short url is not available
+   //then provided vanity URL for Facebook and Twitter links
+   if((startURL.includes('?authuser=0')) && (shortURL.length < 2))
+   {
+        shortURL = "http://www.geosearchtool.com"
+        console.log("2 shortURL " + shortURL);
+   }
+   console.log("3 shortURL " + shortURL);
 
     var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
     var faceString = '<div class="fb-share-button" data-href="'+startURL+'" data-layout="button" data-mobile-iframe="true"></div>'
