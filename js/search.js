@@ -52,16 +52,19 @@ var INITIAL_ZOOM_LEVEL = 11;
 var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 
+var startURL = '';
+
 var CAR_REGEX = /\d{4} (?:dodge|chevy|ford|toyota|bmw|mercedes|honda|chrysler|pontiac|hyundai|audi|jeep|scion|cadillac|volks|acura|lexus|suburu|nissan|mazda|suzuki|buick|gmc|chevrolet|lincoln|infiniti|mini|hummer|porsche|volvo|land|kia|saturn|mitsubishi)/i;
 
 
 /** Initialize portions of page on page load and create object with all News channels in it
  */
 $(document).ready(function() {
+  startURL = decodeURIComponent(window.location);
   hideSearchFilters();
   resetResultsSection();
   displayCustomRangeSection();
-
+  loadSocialLinks();
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
 });
 
@@ -69,6 +72,29 @@ function handleClientLoad() {
   gapi.client.load('youtube', 'v3', function() {
     $.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&callback=handleMapsLoad&key=' + API_ACCESS_KEY);
   });
+}
+
+
+function loadSocialLinks(){
+   var social_div = $('<div>');
+   social_div.addClass('socialCell');  
+   
+   var socialCell = $('<td>');
+   var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
+   var faceString = '<div class="fb-share-button" data-href="'+startURL+'" data-layout="button" data-mobile-iframe="true"></div>'
+   var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+startURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+   var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+    
+   //socialCell.append('<br><br>');
+   socialCell.append(faceString0);
+   socialCell.append(faceString);
+   //socialCell.append('<br><br>');
+   socialCell.append(twitterString);
+   socialCell.append(twitterString2);
+   social_div.append(socialCell);
+   $('#socialCell').append(social_div);
+
+  
 }
 
 function handleMapsLoad() {
@@ -209,7 +235,7 @@ function searchYouTube() {
  */
 function loadParamsFromURL() {
   //retrieve URL from browser window
-  var startURL = decodeURIComponent(window.location);
+  startURL = decodeURIComponent(window.location);
 
   //reset the input object to remove any old data
   cleanInputObject();
@@ -646,7 +672,7 @@ function generateResultList() {
     var imageCell = $('<td width=100>');
     var metaDataCell = $('<td width=350 valign=top>');
     var rankCell = $('<td>');
-    var socialCell = $('<td>');
+    //var socialCell = $('<td>');
 
     //format image section
     var imageString = "<img src='" + finalResults2[i].thumbNailURL + "' height='100' width='100'/>";
@@ -674,13 +700,13 @@ function generateResultList() {
     var rank = i + 1;
     var imageNumberRank = '<h2>' + rank + '</h2><br>';
     rankCell.append(imageNumberRank);
-    
+    /*
     var videoURLStringLong = "http://www.geosearchtool.com"+videoURLString
     var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
     var faceString = '<div class="fb-share-button" data-href="'+videoURLStringLong+'" data-layout="button" data-mobile-iframe="true"></div>'
     var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+videoURLStringLong+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
     var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
-
+    
     socialCell.append('<br>');
     socialCell.append('<br>');
     socialCell.append(faceString0);
@@ -689,7 +715,7 @@ function generateResultList() {
     socialCell.append('<br>');
     socialCell.append(twitterString);
     socialCell.append(twitterString2);
-
+    */
 
     //Put all the sections of the row together
     resultRow.append(imageCell);
