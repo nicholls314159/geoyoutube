@@ -193,7 +193,7 @@ function populateVideoMetaData(){
     +'<meta property="og:url"  content="http://www.geosearchtool.com" />' 
     +'<meta property="og:title" content="Check out this Video!!!" /> '
     +'<meta property="og:image" content="http://www.geosearchtool.com/images/joshuaTree.png" />'
-    +'<meta property="og:description" content=''/>'
+    +'<meta property="og:description" content=""/>'
    
    //if its the first time the page has been loaded and short url is not available
    //then provided vanity URL for Facebook and Twitter links
