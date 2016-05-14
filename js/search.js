@@ -663,9 +663,9 @@ function processYouTubeRequest(request) {
     window.history.pushState("updatingURLwithParams", "YT Geo Search Tool", generateURLwithQueryParameters());
   });
   
-  /////
-  //var longURL=document.getElementById("longurl").value;
-  //console.log("longURL is "+longURL)
+  
+  //reset startURL with the latest
+  startURL = decodeURIComponent(window.location);
   var requestShortener = gapi.client.urlshortener.url.insert({
     'resource': {
      'longUrl': startURL
