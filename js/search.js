@@ -662,7 +662,7 @@ function generateResultList() {
   tableDefinition.attr('width', '500');
   tableDefinition.attr('cellpadding', '5');
 
-  loadSocialLinks();
+  
   //tableDefinition.append(facebookFunction);
   
   //filter out any irrelevant results
@@ -749,6 +749,8 @@ function generateResultList() {
   //ensure table is nested in 'video-container' div for proper formatting
   div.append(tableOfVideoContent_div);
   $('#video-container').append(div);
+  
+  loadSocialLinks();
 }
 
 
