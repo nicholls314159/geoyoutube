@@ -665,16 +665,23 @@ function processYouTubeRequest(request) {
     window.history.pushState("updatingURLwithParams", "YT Geo Search Tool", generateURLwithQueryParameters());
   });
   
-  ///generate short URL for social links
-  var request = gapi.client.urlshortener.url.get({
-    'longUrl': startURL
+  /////
+  var request = gapi.client.urlshortener.url.insert({
+    'resource': {
+      'longUrl': startURL
+	}
+    });
+    request.execute(function(response) 
+	{
+		if(response.id != null)
+		{
+		  shortURL = response.id;
+		  console.log('shortURL is'+shortURL);
+		}else{
+			alert("error: creating short url");
+		}
   });
-    request.then(function(response) {
-    shortURL = response.result.shortUrl;
-    console.log('shortURL is'+shortURL)
-  }, function(reason) {
-    console.log('Error: ' + reason.result.error.message);
-  });
+  
   
 }
 
