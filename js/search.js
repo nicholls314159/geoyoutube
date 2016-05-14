@@ -55,6 +55,7 @@ var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 var CAR_REGEX = /\d{4} (?:dodge|chevy|ford|toyota|bmw|mercedes|honda|chrysler|pontiac|hyundai|audi|jeep|scion|cadillac|volks|acura|lexus|suburu|nissan|mazda|suzuki|buick|gmc|chevrolet|lincoln|infiniti|mini|hummer|porsche|volvo|land|kia|saturn|mitsubishi)/i;
 
 var startURL = '';
+var shortURL = '';
 
 
 /** Initialize portions of page on page load and create object with all News channels in it
@@ -72,6 +73,7 @@ $(document).ready(function() {
 function handleClientLoad() {
   gapi.client.load('youtube', 'v3', function() {
     $.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&callback=handleMapsLoad&key=' + API_ACCESS_KEY);
+    gapi.client.load('urlshortener', 'v1');
   });
 }
 
@@ -82,17 +84,21 @@ function handleMapsLoad() {
   loadParamsFromURL();
 }
 
+
+
 function loadSocialLinks(){
   //capture the URL for the page
-   startURL = decodeURIComponent(window.location);
-   console.log("1 startURL " + startURL);
+   //startURL = decodeURIComponent(window.location);
+   //console.log("1 startURL " + startURL);
+   
+   
    //if its the first time the page has been loaded then provided vanity URL for Facebook and Twitter links
    if(startURL.includes('?authuser=0'))
    {
-        startURL = "http://www.geosearchtool.com"
-        console.log("3 startURL " + startURL);
+        shortURL = "http://www.geosearchtool.com"
+        console.log("2 shortURL " + shortURL);
    }
-   console.log("3 startURL " + startURL);
+   console.log("3 shortURL " + shortURL);
    
    var social_div = $('<div>');
    social_div.addClass('socialCell');  
@@ -103,15 +109,13 @@ function loadSocialLinks(){
    
    var socialCell = $('<td>');
    var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-   var faceString = '<div class="fb-share-button" data-href="'+startURL+'" data-layout="button" data-mobile-iframe="true"></div>'
-   var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+startURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+   var faceString = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button" data-mobile-iframe="true"></div>'
+   var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
    var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
     
-  console.log("faceString0 is "+faceString0);
+  console.log("faceString0 is "+faceString);
   console.log("twitterString is "+twitterString);
   
-    
-    
    //socialCell.append('<br><br>');
    socialCell.append(faceString0);
    socialCell.append(faceString);
@@ -660,6 +664,18 @@ function processYouTubeRequest(request) {
     //Update the URL bar with the search parameters from the search
     window.history.pushState("updatingURLwithParams", "YT Geo Search Tool", generateURLwithQueryParameters());
   });
+  
+  ///generate short URL for social links
+  var request = gapi.client.urlshortener.url.get({
+    'longUrl': startURL
+  });
+    request.then(function(response) {
+    shortURL = response.result.shortUrl;
+    console.log('shortURL is'+shortURL)
+  }, function(reason) {
+    console.log('Error: ' + reason.result.error.message);
+  });
+  
 }
 
 
