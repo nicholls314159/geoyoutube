@@ -60,11 +60,11 @@ var startURL = '';
 /** Initialize portions of page on page load and create object with all News channels in it
  */
 $(document).ready(function() {
-  startURL = decodeURIComponent(window.location);
+  
   hideSearchFilters();
   resetResultsSection();
   displayCustomRangeSection();
-  loadSocialLinks();
+  
 
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
 });
@@ -83,6 +83,17 @@ function handleMapsLoad() {
 }
 
 function loadSocialLinks(){
+  
+   //capture the URL for the page
+   startURL = decodeURIComponent(window.location);
+   console.log("1 startURL "+ startURL);
+   //if its the first time the page has been loaded then provided vanity URL for Facebook and Twitter links
+   if(startURL.includes('?authuser=0'))
+   {
+        startURL = "http://www.geosearchtool.com"
+        console.log("2 startURL "+ startURL);
+   }
+   console.log("3 startURL "+ startURL);
    var social_div = $('<div>');
    social_div.addClass('socialCell');  
    
@@ -95,7 +106,7 @@ function loadSocialLinks(){
    //socialCell.append('<br><br>');
    socialCell.append(faceString0);
    socialCell.append(faceString);
-   //socialCell.append('<br><br>');
+   socialCell.append('&nbsp;&nbsp;&nbsp;');
    socialCell.append(twitterString);
    socialCell.append(twitterString2);
    social_div.append(socialCell);
@@ -654,7 +665,7 @@ function generateResultList() {
   tableDefinition.attr('width', '500');
   tableDefinition.attr('cellpadding', '5');
 
-  tableDefinition.append(facebookFunction);
+  //tableDefinition.append(facebookFunction);
   
   //filter out any irrelevant results
   filterIrrelevantResults();
@@ -698,6 +709,8 @@ function generateResultList() {
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
 
+    loadSocialLinks();
+    
     //format rank section
     /*
     var rank = i + 1;
