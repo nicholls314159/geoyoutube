@@ -367,7 +367,9 @@ function clickedSearchButton() {
 
   //search YouTube, if there are no validation errors
   if (!validationErrors) {
-    searchYouTube();
+    //searchYouTube();
+    url = generateURLwithQueryParameters();
+    window.location = url;
   }
 }
 
