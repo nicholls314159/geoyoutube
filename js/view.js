@@ -53,7 +53,8 @@ function handleClientLoad() {
  */
 function loadParamsFromURL() {
   //retrieve URL from browser window
-  startURL = decodeURIComponent(window.location);
+  startURL = window.location.href;
+  //decodeURIComponent(window.location);
   console.log("StartURL:  " + startURL);
   
   //If the URL does not contain search parameters to parse skip to end of function
@@ -137,7 +138,8 @@ function pullVideoMetaData(){
         
       });
         //reset startURL with the latest
-      startURL = decodeURIComponent(window.location);
+      //startURL = decodeURIComponent(window.location);
+      startURL = window.location.href;
       var requestShortener = gapi.client.urlshortener.url.insert({
          'resource': {
             'longUrl': startURL
