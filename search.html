@@ -31,9 +31,19 @@ Author:  Stephen Nicholls, March 10, 2014
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="js/search.js"></script>
+
+<meta property="og:type" content="video.other" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:site_name" content="Geo Search Tool" />
+<meta property="og:url"  content="http://www.geosearchtool.com" /> 
+<meta property="og:title" content="Search for Videos by Location!!!" /> 
+<meta property="og:image" content="http://www.geosearchtool.com/images/joshTR_1068.png" />
+<meta property="og:description" content="The Geo Search Tool allows you to search YouTube based on location and time, allowing citizen journalism and videos with little to no views to surface. "/>	
+      
   </head>
 
   <body>
+      
     <form id="jt_search_form" action="javascript:clickedSearchButton()">
       <table>
         <tr>
@@ -120,8 +130,12 @@ Author:  Stephen Nicholls, March 10, 2014
               </table>
             </td>
           </tr>
-          <tr>
-            <td colspan='3' align='right'>
+          <tr><td>
+                <div id=socialCellContainer>
+                    <div id="socialCell"></div>
+                </div>
+            </td>
+            <td colspan='2' align='right'>
               <a id="showFiltersLink" href="javascript:showSearchFilters();">Show Advanced Search</a>
               <a id="hideFiltersLink" href="javascript:hideSearchFilters();">Hide Advanced Search</a>
             </td>

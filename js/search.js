@@ -56,21 +56,36 @@ var startURL = '';
 
 var CAR_REGEX = /\d{4} (?:dodge|chevy|ford|toyota|bmw|mercedes|honda|chrysler|pontiac|hyundai|audi|jeep|scion|cadillac|volks|acura|lexus|suburu|nissan|mazda|suzuki|buick|gmc|chevrolet|lincoln|infiniti|mini|hummer|porsche|volvo|land|kia|saturn|mitsubishi)/i;
 
+//Current page URL for access params
+var startURL = '';
+
+//URL generated from Google Shortener service, for use in tweets and FB posts
+var shortURL = '';
+
 
 /** Initialize portions of page on page load and create object with all News channels in it
  */
 $(document).ready(function() {
+<<<<<<< HEAD
   startURL = decodeURIComponent(window.location);
   hideSearchFilters();
   resetResultsSection();
   displayCustomRangeSection();
   loadSocialLinks();
+=======
+  
+  hideSearchFilters();
+  resetResultsSection();
+  displayCustomRangeSection();
+>>>>>>> origin/jt2
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
 });
 
 function handleClientLoad() {
   gapi.client.load('youtube', 'v3', function() {
     $.getScript('https://maps.googleapis.com/maps/api/js?sensor=false&callback=handleMapsLoad&key=' + API_ACCESS_KEY);
+    gapi.client.setApiKey(API_ACCESS_KEY); 
+    gapi.client.load('urlshortener', 'v1',function(){});
   });
 }
 
@@ -102,6 +117,48 @@ function handleMapsLoad() {
 
   $('#search-button').attr('disabled', false);
   loadParamsFromURL();
+}
+
+
+
+function loadSocialLinks(){
+   //if its the first time the page has been loaded and short url is not available
+   //then provided vanity URL for Facebook and Twitter links
+   if((startURL.includes('?authuser=0')) && (shortURL.length < 2))
+   {
+        shortURL = "http://www.geosearchtool.com"
+        console.log("2 shortURL " + shortURL);
+   }
+   console.log("3 shortURL " + shortURL);
+   
+   var social_div = $('<div>');
+   social_div.addClass('socialCell');  
+
+  var socialTableDefinition = $('<table>');
+  var socialRow = $('<tr>');
+   
+   
+   var socialCell = $('<td>');
+   var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
+   var faceString = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button" data-mobile-iframe="true"></div>'
+   var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+   var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+    
+  console.log("faceString0 is "+faceString);
+  console.log("twitterString is "+twitterString);
+  
+   //socialCell.append('<br><br>');
+   socialCell.append(faceString0);
+   socialCell.append(faceString);
+   socialCell.append('&nbsp;&nbsp;&nbsp;');
+   socialCell.append(twitterString);
+   socialCell.append(twitterString2);
+   
+   socialRow.append(socialCell);
+   socialTableDefinition.append(socialRow);
+   social_div.append(socialTableDefinition);
+   $('#socialCell').append(social_div);
+
 }
 
 /**
@@ -235,7 +292,11 @@ function searchYouTube() {
  */
 function loadParamsFromURL() {
   //retrieve URL from browser window
+<<<<<<< HEAD
   startURL = decodeURIComponent(window.location);
+=======
+  startURL = window.location.href;
+>>>>>>> origin/jt2
 
   //reset the input object to remove any old data
   cleanInputObject();
@@ -637,6 +698,30 @@ function processYouTubeRequest(request) {
     }
     //Update the URL bar with the search parameters from the search
     window.history.pushState("updatingURLwithParams", "YT Geo Search Tool", generateURLwithQueryParameters());
+
+
+    //reset startURL with the latest
+    startURL = window.location.href;
+    //decodeURIComponent(window.location);
+    console.log('startURL is'+startURL)
+    var requestShortener = gapi.client.urlshortener.url.insert({
+      'resource': {
+      'longUrl': startURL
+      }
+    });
+    requestShortener.execute(function(response2) 
+    {
+       console.log('turd1')
+       if(response2.id != null)
+       {
+          console.log('turd2')
+          shortURL = response2.id;
+          console.log('??shortURL is'+shortURL);
+        }else{
+           console.log("error: creating short url");
+        }
+    });
+
   });
 }
 
@@ -654,6 +739,9 @@ function generateResultList() {
   tableDefinition.attr('width', '500');
   tableDefinition.attr('cellpadding', '5');
 
+  
+  //tableDefinition.append(facebookFunction);
+  
   //filter out any irrelevant results
   filterIrrelevantResults();
 
@@ -680,9 +768,9 @@ function generateResultList() {
 
     
     //Generate new URL string
-    var videoURLString =
-    "/view.html?v="+finalResults2[i].videoID;
-    console.log("videoURLString is "+videoURLString)
+    var videoURLString = "/view.html?v="+finalResults2[i].videoID;
+    var videoURLStringLong = "http://www.geosearchtool.com"+videoURLString
+    //console.log("videoURLString is "+videoURLString)
     
     var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href='" + videoURLString + "'>" + finalResults2[i].title + "</a></attr><br>";
 
@@ -696,6 +784,7 @@ function generateResultList() {
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
 
+<<<<<<< HEAD
     //format rank section
     var rank = i + 1;
     var imageNumberRank = '<h2>' + rank + '</h2><br>';
@@ -717,13 +806,14 @@ function generateResultList() {
     socialCell.append(twitterString2);
     */
 
+=======
+>>>>>>> origin/jt2
     //Put all the sections of the row together
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
-    //resultRow.append(rankCell);
-    resultRow.append(socialCell);
     tableDefinition.append(resultRow);
   }
+  
   //show results in a table on UI
   tableOfVideoContent_div.append(tableDefinition);
   $('#tableOfVideoContentResults').append(tableOfVideoContent_div);
@@ -731,6 +821,8 @@ function generateResultList() {
   //ensure table is nested in 'video-container' div for proper formatting
   div.append(tableOfVideoContent_div);
   $('#video-container').append(div);
+  
+  loadSocialLinks();
 }
 
 
