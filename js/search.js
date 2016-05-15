@@ -884,7 +884,7 @@ function displayCustomRangeSection() {
  */
 function getLocationSearchResults() {
   console.log('getLocationSearchResults() start');
-  //inputObject.inputSearchLocation = "new york"
+  inputObject.inputSearchLocation = "new york"
   console.log('inputObject.inputSearchLocation is '+inputObject.inputSearchLocation)
   geocoder.geocode({ 'address': inputObject.inputSearchLocation }, function(results, status) {
     console.log("status is " + status)
