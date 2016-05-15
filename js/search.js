@@ -263,8 +263,9 @@ function searchYouTube() {
   }
 }
 
+//need to clean out hard coded spaces from url params e.g. "new%20york" should be "new york"
 function cleanStringOfHTMLEncodedSpaces(raw_string){
-  if (typeof(myVariable) != "undefined"){
+  if (typeof(raw_string) != "undefined"){
       return raw_string.replace("%20", " ");
   }else{
     return raw_string;
@@ -294,7 +295,6 @@ function loadParamsFromURL() {
       urlParams[individualParamCollection[0]] = individualParamCollection[1];
     }
 
-    //need to clean out hard coded spaces from url params e.g. "new%20york" should be "new york"
 
     //start loading inputObject from the URL parameters
     inputObject.inputQuery = cleanStringOfHTMLEncodedSpaces(urlParams['q']);
@@ -892,8 +892,9 @@ function displayCustomRangeSection() {
  */
 function getLocationSearchResults() {
   console.log('getLocationSearchResults() start');
+  console.log('inputObject.inputSearchLocation is'+inputObject.inputSearchLocation);
   geocoder.geocode({ 'address': inputObject.inputSearchLocation }, function(results, status) {
-    //console.log("status is " + status)
+    console.log("status is " + status);
     if (status == google.maps.GeocoderStatus.OK) {
       //store latitude and longitude from geo coder into the inputObject
       inputObject.inputLat = results[0].geometry.location.lat();
