@@ -884,11 +884,16 @@ function displayCustomRangeSection() {
  */
 function getLocationSearchResults() {
   console.log('getLocationSearchResults() start');
+  console.log('inputObject.inputSearchLocation is '+inputObject.inputSearchLocation)
   geocoder.geocode({ 'address': inputObject.inputSearchLocation }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       //store latitude and longitude from geo coder into the inputObject
       inputObject.inputLat = results[0].geometry.location.lat();
       inputObject.inputLong = results[0].geometry.location.lng();
+       
+      console.log('inputObject.inputLat is '+inputObject.inputLat)
+      console.log('inputObject.inputLong is '+inputObject.inputLong)
+
 
       //If the end user submitted a channel list then make search calls for each channel in the list
       if (inputObject.hasChannelList) {
@@ -1003,7 +1008,7 @@ function getLocationSearchResults() {
       showConnectivityError();
     }
   });
-  console.log('getLocationSearchResults() start');
+  console.log('getLocationSearchResults() end');
 }
 
 /**  This function is used to filter results a News publisher is probably not interested in (e.g. car ads)
