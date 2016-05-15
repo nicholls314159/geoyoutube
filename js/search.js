@@ -264,7 +264,11 @@ function searchYouTube() {
 }
 
 function cleanStringOfHTMLEncodedSpaces(raw_string){
-  return raw_string.replace("%20", " ");
+  if (typeof(myVariable) != "undefined"){
+      return raw_string.replace("%20", " ");
+  }else{
+    return raw_string;
+  }
 }
 
 /**  This function loads parameters from a URL into the input object
