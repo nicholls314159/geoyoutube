@@ -66,18 +66,18 @@ var shortURL = '';
 /** Initialize portions of page on page load and create object with all News channels in it
  */
 $(document).ready(function() {
-<<<<<<< HEAD
+/*
   startURL = decodeURIComponent(window.location);
   hideSearchFilters();
   resetResultsSection();
   displayCustomRangeSection();
   loadSocialLinks();
-=======
-  
+*/
+////
   hideSearchFilters();
   resetResultsSection();
   displayCustomRangeSection();
->>>>>>> origin/jt2
+///
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
 });
 
@@ -292,11 +292,11 @@ function searchYouTube() {
  */
 function loadParamsFromURL() {
   //retrieve URL from browser window
-<<<<<<< HEAD
-  startURL = decodeURIComponent(window.location);
-=======
+///<<<<<<< HEAD
+//  startURL = decodeURIComponent(window.location);
+//=======
   startURL = window.location.href;
->>>>>>> origin/jt2
+//>>>>>>> origin/jt2
 
   //reset the input object to remove any old data
   cleanInputObject();
@@ -783,7 +783,7 @@ function generateResultList() {
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
-
+/*
 <<<<<<< HEAD
     //format rank section
     var rank = i + 1;
@@ -804,10 +804,10 @@ function generateResultList() {
     socialCell.append('<br>');
     socialCell.append(twitterString);
     socialCell.append(twitterString2);
-    */
 
 =======
->>>>>>> origin/jt2
+*/
+///>>>>>>> origin/jt2
     //Put all the sections of the row together
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
