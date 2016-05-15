@@ -259,7 +259,7 @@ function searchYouTube() {
  */
 function loadParamsFromURL() {
   //retrieve URL from browser window
-  startURL = decodeURIComponent(window.location);
+  startURL = window.location.href;
 
   //reset the input object to remove any old data
   cleanInputObject();
@@ -747,40 +747,11 @@ function generateResultList() {
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
 
-    
-    
-    //format rank section
-    /*
-    var rank = i + 1;
-    var imageNumberRank = '<h2>' + rank + '</h2><br>';
-    rankCell.append(imageNumberRank);
-    */
-    /*
-    var facebookFunction = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-    var facebookLink = '<div class="fb-share-button" data-href="'+videoURLStringLong+'" data-layout="button" data-mobile-iframe="true"></div>'
-    var twitterLink = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+videoURLStringLong+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
-    var twitterFunction = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
-
-    socialCell.append('<br>');
-    socialCell.append('<br>');
-    socialCell.append(facebookLink);
-    //socialCell.append(facebookFunction);
-    socialCell.append('<br>');
-    socialCell.append('<br>');
-    socialCell.append(twitterLink);
-    //socialCell.append(twitterFunction);
-    */
-
     //Put all the sections of the row together
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
-    //resultRow.append(rankCell);
-    //resultRow.append(socialCell);
     tableDefinition.append(resultRow);
   }
-  
-  //tableDefinition.append(facebookFunction);
-  //tableDefinition.append(twitterFunction);
   
   //show results in a table on UI
   tableOfVideoContent_div.append(tableDefinition);
