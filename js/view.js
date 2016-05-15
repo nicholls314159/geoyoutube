@@ -193,11 +193,6 @@ function populateVideoMetaData(){
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
 
-    var metaTags = '<meta property="og:type" content="video.other" />'+
-    +'<meta property="og:url"  content="http://www.geosearchtool.com" />' 
-    +'<meta property="og:title" content="Check out this Video!!!" /> '
-    +'<meta property="og:image" content="http://www.geosearchtool.com/images/joshuaTree.png" />'
-    +'<meta property="og:description" content=""/>'
    
    //if its the first time the page has been loaded and short url is not available
    //then provided vanity URL for Facebook and Twitter links
@@ -227,7 +222,6 @@ function populateVideoMetaData(){
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
-    metaDataCell.append(metaTags);
     
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
