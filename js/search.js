@@ -102,8 +102,8 @@ function loadSocialLinks(){
         shortURL = "http://www.geosearchtool.com"
    }
    //console.log("shortURL " + shortURL);
-   
-   var social_div = $('<div>');
+   var social_div = '';
+   social_div = $('<div>');
    social_div.addClass('socialCell');  
 
   var socialTableDefinition = $('<table>');
@@ -118,11 +118,13 @@ function loadSocialLinks(){
   console.log("facebookLink is "+facebookLink);
   console.log("twitterLink is "+twitterLink);
   
-   socialCell.append(facebookFunction);
+   //socialCell.append(facebookFunction);
+   ('body').append(facebookFunction);
    socialCell.append(facebookLink);
    socialCell.append('&nbsp;&nbsp;&nbsp;');
    socialCell.append(twitterLink);
-   socialCell.append(twitterFunction);
+   //socialCell.append(twitterFunction);
+   ('body').append(twitterFunction);
    
    socialRow.append(socialCell);
    socialTableDefinition.append(socialRow);
@@ -694,6 +696,7 @@ function processYouTubeRequest(request) {
 /** This function generates the UI of the results section after the search has been processed
  */
 function generateResultList() {
+  console.log('generateResultList() start')
   var div = $('<div>');
   div.addClass('video-content');
 
@@ -755,7 +758,8 @@ function generateResultList() {
   div.append(tableOfVideoContent_div);
   $('#video-container').append(div);
   
-  //loadSocialLinks();
+  loadSocialLinks();
+  console.log('generateResultList() end')
 }
 
 
@@ -877,6 +881,7 @@ function displayCustomRangeSection() {
  *   and then generate a search request object.   Request object is then passed to processYouTubeRequest for processing.
  */
 function getLocationSearchResults() {
+  console.log('getLocationSearchResults() start');
   geocoder.geocode({ 'address': inputObject.inputSearchLocation }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       //store latitude and longitude from geo coder into the inputObject
@@ -996,6 +1001,7 @@ function getLocationSearchResults() {
       showConnectivityError();
     }
   });
+  console.log('getLocationSearchResults() start');
 }
 
 /**  This function is used to filter results a News publisher is probably not interested in (e.g. car ads)
