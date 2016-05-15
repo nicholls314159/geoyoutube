@@ -118,13 +118,13 @@ function loadSocialLinks(){
   console.log("facebookLink is "+facebookLink);
   console.log("twitterLink is "+twitterLink);
   
-   //socialCell.append(facebookFunction);
-   ('body').append(facebookFunction);
+   socialCell.append(facebookFunction);
+   //('body').append(facebookFunction);
    socialCell.append(facebookLink);
    socialCell.append('&nbsp;&nbsp;&nbsp;');
    socialCell.append(twitterLink);
-   //socialCell.append(twitterFunction);
-   ('body').append(twitterFunction);
+   socialCell.append(twitterFunction);
+   //('body').append(twitterFunction);
    
    socialRow.append(socialCell);
    socialTableDefinition.append(socialRow);
