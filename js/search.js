@@ -661,32 +661,31 @@ function processYouTubeRequest(request) {
     }
     //Update the URL bar with the search parameters from the search
     window.history.pushState("updatingURLwithParams", "YT Geo Search Tool", generateURLwithQueryParameters());
-  });
-  
-  
-  //reset startURL with the latest
-  startURL = window.location.href;
-  //decodeURIComponent(window.location);
-  console.log('startURL is'+startURL)
-  var requestShortener = gapi.client.urlshortener.url.insert({
-    'resource': {
-     'longUrl': startURL
-    }
-  });
-  requestShortener.execute(function(response2) 
-  {
-     console.log('turd1')
-     if(response2.id != null)
-     {
-        console.log('turd2')
-        shortURL = response2.id;
-        console.log('??shortURL is'+shortURL);
-      }else{
-         console.log("error: creating short url");
+
+
+    //reset startURL with the latest
+    startURL = window.location.href;
+    //decodeURIComponent(window.location);
+    console.log('startURL is'+startURL)
+    var requestShortener = gapi.client.urlshortener.url.insert({
+      'resource': {
+      'longUrl': startURL
       }
+    });
+    requestShortener.execute(function(response2) 
+    {
+       console.log('turd1')
+       if(response2.id != null)
+       {
+          console.log('turd2')
+          shortURL = response2.id;
+          console.log('??shortURL is'+shortURL);
+        }else{
+           console.log("error: creating short url");
+        }
+    });
+
   });
-  
-  
 }
 
 
