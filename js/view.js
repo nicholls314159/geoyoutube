@@ -33,12 +33,14 @@ var startURL = '';
 //URL from Google Shortening service for Facebook and Tweeter
 var shortURL = '';
 
-/**   
+/**   This function calls subsequent functions to load APIs for calls
   */
 $(document).ready(function() {
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
 });
 
+/**  This function sets the API key, instantiates the APIs, and makes calls to pull relevant data
+ */ 
 function handleClientLoad() {
   gapi.client.setApiKey(API_ACCESS_KEY); 
   gapi.client.load('urlshortener', 'v1',function(){});
@@ -54,7 +56,6 @@ function handleClientLoad() {
 function loadParamsFromURL() {
   //retrieve URL from browser window
   startURL = window.location.href;
-  //decodeURIComponent(window.location);
   console.log("StartURL:  " + startURL);
   
   //If the URL does not contain search parameters to parse skip to end of function
@@ -137,8 +138,8 @@ function pullVideoMetaData(){
         }
         
       });
-        //reset startURL with the latest
-      //startURL = decodeURIComponent(window.location);
+      
+      //reset startURL with the latest
       startURL = window.location.href;
       var requestShortener = gapi.client.urlshortener.url.insert({
          'resource': {
@@ -147,12 +148,10 @@ function pullVideoMetaData(){
       });
       requestShortener.execute(function(response2) 
       {
-          console.log('turd1')
           if(response2.id != null)
           {
-             console.log('turd2')
              shortURL = response2.id;
-             console.log('??shortURL is'+shortURL);
+             console.log('shortURL is'+shortURL);
           }else{
              console.log("error: creating short url");
           }
@@ -199,24 +198,23 @@ function populateVideoMetaData(){
    if((startURL.includes('?authuser=0')) && (shortURL.length < 2))
    {
         shortURL = "http://www.geosearchtool.com"
-        console.log("2 shortURL " + shortURL);
    }
-   console.log("3 shortURL " + shortURL);
+   console.log("1 shortURL " + shortURL);
 
-    var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-    var faceString = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button" data-mobile-iframe="true"></div>'
-    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
-    var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+    var facebookFunction = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
+    var facebookLink = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button" data-mobile-iframe="true"></div>'
+    var twitterLink = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+    var twitterFunction = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
 
-    console.log('faceString is '+faceString);
-    console.log('twitterString is '+twitterString);
+    console.log('facebookLink is '+facebookLink);
+    console.log('twitterLink is '+twitterLink);
 
     socialCell.append('<br><br>');
-    socialCell.append(faceString0);
-    socialCell.append(faceString);
+    socialCell.append(facebookFunction);
+    socialCell.append(facebookLink);
     socialCell.append('<br><br>');
-    socialCell.append(twitterString);
-    socialCell.append(twitterString2);
+    socialCell.append(twitterLink);
+    socialCell.append(twitterFunction);
     metaDataCell.append(videoString);
     metaDataCell.append(videoDesc);
     metaDataCell.append(uploadDate);
