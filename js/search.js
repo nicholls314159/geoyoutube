@@ -294,17 +294,17 @@ function loadParamsFromURL() {
 
     //start loading inputObject from the URL parameters
     inputObject.inputQuery = cleanStringOfHTMLEncodedSpaces(urlParams['q']);
-    inputObject.inputLat = urlParams['la'];
-    inputObject.inputLong = urlParams['lo'];
-    inputObject.inputLocationRadius = urlParams['lr'];
-    inputObject.inputTimeWindow = urlParams['tw'];
-    inputObject.inputStartDate = urlParams['sd'];
-    inputObject.inputEndDate = urlParams['ed'];
-    inputObject.inputChannelList = urlParams['cl'];
+    inputObject.inputLat = cleanStringOfHTMLEncodedSpaces(urlParams['la']);
+    inputObject.inputLong = cleanStringOfHTMLEncodedSpaces(urlParams['lo']);
+    inputObject.inputLocationRadius = cleanStringOfHTMLEncodedSpaces(urlParams['lr']);
+    inputObject.inputTimeWindow = cleanStringOfHTMLEncodedSpaces(urlParams['tw']);
+    inputObject.inputStartDate = cleanStringOfHTMLEncodedSpaces(urlParams['sd']);
+    inputObject.inputEndDate = cleanStringOfHTMLEncodedSpaces(urlParams['ed']);
+    inputObject.inputChannelList = cleanStringOfHTMLEncodedSpaces(urlParams['cl']);
     inputObject.inputSearchLocation = cleanStringOfHTMLEncodedSpaces(urlParams['sl']);
-    inputObject.inputNewsChannelFilter = urlParams['ncf'];
-    inputObject.inputZoomLevel = urlParams['zl'];
-    publishBeforeTime = urlParams['pbt'];
+    inputObject.inputNewsChannelFilter = cleanStringOfHTMLEncodedSpaces(urlParams['ncf']);
+    inputObject.inputZoomLevel = cleanStringOfHTMLEncodedSpaces(urlParams['zl']);
+    publishBeforeTime = cleanStringOfHTMLEncodedSpaces(urlParams['pbt']);
 
     inputObject.inputEmbedsOnly = urlParams['eo'];
     if (urlParams["eo"] === "true") {
@@ -429,8 +429,6 @@ function completeInputObject() {
     validationErrorsArr.push("End Date must be format of mm-dd-yyyy");
     validationErrors = true;
   }
-
-  
 
   //if errors exist, display them on interface and terminate execution there
   if (validationErrors) {
@@ -890,18 +888,13 @@ function displayCustomRangeSection() {
  */
 function getLocationSearchResults() {
   console.log('getLocationSearchResults() start');
-  console.log('inputObject.inputSearchLocation is '+inputObject.inputSearchLocation)
   geocoder.geocode({ 'address': inputObject.inputSearchLocation }, function(results, status) {
-    console.log("status is " + status)
+    //console.log("status is " + status)
     if (status == google.maps.GeocoderStatus.OK) {
       //store latitude and longitude from geo coder into the inputObject
       inputObject.inputLat = results[0].geometry.location.lat();
       inputObject.inputLong = results[0].geometry.location.lng();
        
-      console.log('inputObject.inputLat is '+inputObject.inputLat)
-      console.log('inputObject.inputLong is '+inputObject.inputLong)
-
-
       //If the end user submitted a channel list then make search calls for each channel in the list
       if (inputObject.hasChannelList) {
         //split list by channel
