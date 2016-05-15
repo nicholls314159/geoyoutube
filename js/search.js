@@ -755,7 +755,7 @@ function generateResultList() {
   div.append(tableOfVideoContent_div);
   $('#video-container').append(div);
   
-  loadSocialLinks();
+  //loadSocialLinks();
 }
 
 
