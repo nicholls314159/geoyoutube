@@ -665,7 +665,9 @@ function processYouTubeRequest(request) {
   
   
   //reset startURL with the latest
-  startURL = decodeURIComponent(window.location);
+  startURL = window.location.href;
+  //decodeURIComponent(window.location);
+  console.log('startURL is'+startURL)
   var requestShortener = gapi.client.urlshortener.url.insert({
     'resource': {
      'longUrl': startURL
