@@ -263,6 +263,10 @@ function searchYouTube() {
   }
 }
 
+function cleanStringOfHTMLEncodedSpaces(raw_string){
+  return raw_string.replace("%20", " ");
+}
+
 /**  This function loads parameters from a URL into the input object
  */
 function loadParamsFromURL() {
@@ -286,8 +290,10 @@ function loadParamsFromURL() {
       urlParams[individualParamCollection[0]] = individualParamCollection[1];
     }
 
+    //need to clean out hard coded spaces from url params e.g. "new%20york" should be "new york"
+
     //start loading inputObject from the URL parameters
-    inputObject.inputQuery = urlParams['q'];
+    inputObject.inputQuery = cleanStringOfHTMLEncodedSpaces(urlParams['q']);
     inputObject.inputLat = urlParams['la'];
     inputObject.inputLong = urlParams['lo'];
     inputObject.inputLocationRadius = urlParams['lr'];
@@ -295,7 +301,7 @@ function loadParamsFromURL() {
     inputObject.inputStartDate = urlParams['sd'];
     inputObject.inputEndDate = urlParams['ed'];
     inputObject.inputChannelList = urlParams['cl'];
-    inputObject.inputSearchLocation = urlParams['sl'];
+    inputObject.inputSearchLocation = cleanStringOfHTMLEncodedSpaces(urlParams['sl']);
     inputObject.inputNewsChannelFilter = urlParams['ncf'];
     inputObject.inputZoomLevel = urlParams['zl'];
     publishBeforeTime = urlParams['pbt'];
@@ -884,7 +890,6 @@ function displayCustomRangeSection() {
  */
 function getLocationSearchResults() {
   console.log('getLocationSearchResults() start');
-  inputObject.inputSearchLocation = "new york"
   console.log('inputObject.inputSearchLocation is '+inputObject.inputSearchLocation)
   geocoder.geocode({ 'address': inputObject.inputSearchLocation }, function(results, status) {
     console.log("status is " + status)
