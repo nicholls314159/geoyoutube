@@ -78,25 +78,7 @@ function handleClientLoad() {
   });
 }
 
-/*
-function loadSocialLinks(){
-   var social_div = $('<div>');
-   social_div.addClass('socialCell');  
-   
-   var socialCell = $('<td>');
-   var facebookFunction = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-   var facebookLink = '<div class="fb-share-button" data-href="'+startURL+'" data-layout="button" data-mobile-iframe="true"></div>'
-   var twitterLink = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+startURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
-   var twitterFunction = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
-    
-   socialCell.append(facebookFunction);
-   socialCell.append(facebookLink);
-   socialCell.append(twitterLink);
-   socialCell.append(twitterFunction);
-   social_div.append(socialCell);
-   $('#socialCell').append(social_div);
-}
-*/
+
 function handleMapsLoad() {
   geocoder = new google.maps.Geocoder();
   $('#search-button').attr('disabled', false);
@@ -108,6 +90,10 @@ function handleMapsLoad() {
  * This function generates the FB and Twitter buttons and embeds them in the HTML
  */
 function loadSocialLinks(){
+  console.log("loadSocialLinks() ...start");
+  //remove any old results
+  $('#socialCell').empty();
+  
    //if its the first time the page has been loaded and short url is not available
    //then provided vanity URL for Facebook and Twitter links
    startURL = window.location.href;
@@ -142,6 +128,8 @@ function loadSocialLinks(){
    socialTableDefinition.append(socialRow);
    social_div.append(socialTableDefinition);
    $('#socialCell').append(social_div);
+   
+   console.log("loadSocialLinks() ...end");
 }
 
 /**
@@ -159,7 +147,7 @@ function searchYouTube() {
 
   //remove any old results
   $("div").remove(".tableOfVideoContentResults");
-  $("div").remove(".socialCell");
+  
 
   //if this is a location search, route to getLocationSearchResults to conduct
   //geo-encoding and complete search
