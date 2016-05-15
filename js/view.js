@@ -264,11 +264,13 @@ function clickedSearchButton() {
    var dref = document.referrer
    console.log('dref is'+dref)
    //console.log('window.history.go(-1) is' +window.history.go(-1))
-   /*
+   
    if( dref.includes('/?q=&') ){
-      window.history.back();
+      console.log('window.history.back()')
+      //window.history.back();
    }else{
-      window.location = "http://www.geosearchtool.com"
+      console.log('window.location = "http://www.geosearchtool.com"')
+      //window.location = "http://www.geosearchtool.com"
    }
-   */
+   
 }
