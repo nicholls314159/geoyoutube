@@ -110,6 +110,7 @@ function handleMapsLoad() {
 function loadSocialLinks(){
    //if its the first time the page has been loaded and short url is not available
    //then provided vanity URL for Facebook and Twitter links
+   startURL = window.location.href;
    if((startURL.includes('?authuser=0')) && (shortURL.length < 2))
    {
         shortURL = "http://www.geosearchtool.com"
@@ -149,6 +150,7 @@ function loadSocialLinks(){
  *  passes the request to processYouTubeRequest()
  */
 function searchYouTube() {
+  console.log("searchYouTube() 1")
   //Reset errors section, final results array and results section
   $(".showErrors").remove();
   resetResultsSection();
@@ -157,6 +159,7 @@ function searchYouTube() {
 
   //remove any old results
   $("div").remove(".tableOfVideoContentResults");
+  $("div").remove(".socialCell");
 
   //if this is a location search, route to getLocationSearchResults to conduct
   //geo-encoding and complete search
@@ -346,6 +349,7 @@ function loadParamsFromURL() {
  */
 function clickedSearchButton() {
   queryFromClickSearchNotURL = true;
+  console.log("clickedSearchButton()")
 
   //reset the input object to remove any old data
   cleanInputObject();
@@ -749,31 +753,6 @@ function generateResultList() {
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
-/*
-<<<<<<< HEAD
-    //format rank section
-    var rank = i + 1;
-    var imageNumberRank = '<h2>' + rank + '</h2><br>';
-    rankCell.append(imageNumberRank);
-    /*
-    var videoURLStringLong = "http://www.geosearchtool.com"+videoURLString
-    var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-    var faceString = '<div class="fb-share-button" data-href="'+videoURLStringLong+'" data-layout="button" data-mobile-iframe="true"></div>'
-    var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+videoURLStringLong+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
-    var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
-    
-    socialCell.append('<br>');
-    socialCell.append('<br>');
-    socialCell.append(faceString0);
-    socialCell.append(faceString);
-    socialCell.append('<br>');
-    socialCell.append('<br>');
-    socialCell.append(twitterString);
-    socialCell.append(twitterString2);
-
-=======
-*/
-///>>>>>>> origin/jt2
     //Put all the sections of the row together
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
@@ -1001,7 +980,7 @@ function getLocationSearchResults() {
             showConnectivityError();
           }
         } else {
-          //console.log("Searching:  Have Location, No Specific Channel, Live and VOD")
+          console.log("Searching:  Have Location, No Specific Channel, Live and VOD")
           getPublishBeforeAndAfterTime();
           try {
             var request = gapi.client.youtube.search.list({
