@@ -52,8 +52,6 @@ var INITIAL_ZOOM_LEVEL = 11;
 var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 
-var startURL = '';
-
 var CAR_REGEX = /\d{4} (?:dodge|chevy|ford|toyota|bmw|mercedes|honda|chrysler|pontiac|hyundai|audi|jeep|scion|cadillac|volks|acura|lexus|suburu|nissan|mazda|suzuki|buick|gmc|chevrolet|lincoln|infiniti|mini|hummer|porsche|volvo|land|kia|saturn|mitsubishi)/i;
 
 //Current page URL for access params
@@ -66,18 +64,9 @@ var shortURL = '';
 /** Initialize portions of page on page load and create object with all News channels in it
  */
 $(document).ready(function() {
-/*
-  startURL = decodeURIComponent(window.location);
   hideSearchFilters();
   resetResultsSection();
   displayCustomRangeSection();
-  loadSocialLinks();
-*/
-////
-  hideSearchFilters();
-  resetResultsSection();
-  displayCustomRangeSection();
-///
   $.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad');
 });
 
@@ -89,47 +78,43 @@ function handleClientLoad() {
   });
 }
 
-
+/*
 function loadSocialLinks(){
    var social_div = $('<div>');
    social_div.addClass('socialCell');  
    
    var socialCell = $('<td>');
-   var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-   var faceString = '<div class="fb-share-button" data-href="'+startURL+'" data-layout="button" data-mobile-iframe="true"></div>'
-   var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+startURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
-   var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+   var facebookFunction = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
+   var facebookLink = '<div class="fb-share-button" data-href="'+startURL+'" data-layout="button" data-mobile-iframe="true"></div>'
+   var twitterLink = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+startURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+   var twitterFunction = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
     
-   //socialCell.append('<br><br>');
-   socialCell.append(faceString0);
-   socialCell.append(faceString);
-   //socialCell.append('<br><br>');
-   socialCell.append(twitterString);
-   socialCell.append(twitterString2);
+   socialCell.append(facebookFunction);
+   socialCell.append(facebookLink);
+   socialCell.append(twitterLink);
+   socialCell.append(twitterFunction);
    social_div.append(socialCell);
    $('#socialCell').append(social_div);
-
-  
 }
-
+*/
 function handleMapsLoad() {
   geocoder = new google.maps.Geocoder();
-
   $('#search-button').attr('disabled', false);
   loadParamsFromURL();
 }
 
 
-
+/**
+ * This function generates the FB and Twitter buttons and embeds them in the HTML
+ */
 function loadSocialLinks(){
    //if its the first time the page has been loaded and short url is not available
    //then provided vanity URL for Facebook and Twitter links
    if((startURL.includes('?authuser=0')) && (shortURL.length < 2))
    {
         shortURL = "http://www.geosearchtool.com"
-        console.log("2 shortURL " + shortURL);
    }
-   console.log("3 shortURL " + shortURL);
+   //console.log("shortURL " + shortURL);
    
    var social_div = $('<div>');
    social_div.addClass('socialCell');  
@@ -137,28 +122,25 @@ function loadSocialLinks(){
   var socialTableDefinition = $('<table>');
   var socialRow = $('<tr>');
    
-   
    var socialCell = $('<td>');
-   var faceString0 = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-   var faceString = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button" data-mobile-iframe="true"></div>'
-   var twitterString = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
-   var twitterString2 = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
+   var facebookFunction = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
+   var facebookLink = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button" data-mobile-iframe="true"></div>'
+   var twitterLink = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
+   var twitterFunction = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
     
-  console.log("faceString0 is "+faceString);
+  console.log("facebookLink is "+facebookLink);
   console.log("twitterString is "+twitterString);
   
-   //socialCell.append('<br><br>');
-   socialCell.append(faceString0);
-   socialCell.append(faceString);
+   socialCell.append(facebookFunction);
+   socialCell.append(facebookLink);
    socialCell.append('&nbsp;&nbsp;&nbsp;');
-   socialCell.append(twitterString);
-   socialCell.append(twitterString2);
+   socialCell.append(twitterLink);
+   socialCell.append(twitterFunction);
    
    socialRow.append(socialCell);
    socialTableDefinition.append(socialRow);
    social_div.append(socialTableDefinition);
    $('#socialCell').append(social_div);
-
 }
 
 /**
@@ -291,12 +273,7 @@ function searchYouTube() {
 /**  This function loads parameters from a URL into the input object
  */
 function loadParamsFromURL() {
-  //retrieve URL from browser window
-///<<<<<<< HEAD
-//  startURL = decodeURIComponent(window.location);
-//=======
   startURL = window.location.href;
-//>>>>>>> origin/jt2
 
   //reset the input object to remove any old data
   cleanInputObject();
@@ -702,8 +679,7 @@ function processYouTubeRequest(request) {
 
     //reset startURL with the latest
     startURL = window.location.href;
-    //decodeURIComponent(window.location);
-    console.log('startURL is'+startURL)
+    console.log('22 startURL is'+startURL)
     var requestShortener = gapi.client.urlshortener.url.insert({
       'resource': {
       'longUrl': startURL
@@ -711,17 +687,14 @@ function processYouTubeRequest(request) {
     });
     requestShortener.execute(function(response2) 
     {
-       console.log('turd1')
        if(response2.id != null)
        {
-          console.log('turd2')
           shortURL = response2.id;
-          console.log('??shortURL is'+shortURL);
+          console.log('22 shortURL is'+shortURL);
         }else{
            console.log("error: creating short url");
         }
     });
-
   });
 }
 
@@ -739,9 +712,6 @@ function generateResultList() {
   tableDefinition.attr('width', '500');
   tableDefinition.attr('cellpadding', '5');
 
-  
-  //tableDefinition.append(facebookFunction);
-  
   //filter out any irrelevant results
   filterIrrelevantResults();
 
@@ -760,7 +730,6 @@ function generateResultList() {
     var imageCell = $('<td width=100>');
     var metaDataCell = $('<td width=350 valign=top>');
     var rankCell = $('<td>');
-    //var socialCell = $('<td>');
 
     //format image section
     var imageString = "<img src='" + finalResults2[i].thumbNailURL + "' height='100' width='100'/>";
@@ -770,16 +739,13 @@ function generateResultList() {
     //Generate new URL string
     var videoURLString = "/view.html?v="+finalResults2[i].videoID;
     var videoURLStringLong = "http://www.geosearchtool.com"+videoURLString
-    //console.log("videoURLString is "+videoURLString)
-    
-    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href='" + videoURLString + "'>" + finalResults2[i].title + "</a></attr><br>";
 
-    //var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href=" + finalResults2[i].url + "' target='_blank'>" + finalResults2[i].title + "</a></attr><br>";
-    metaDataCell.append(videoString);
+    var videoString = "<attr title='Description: " + finalResults2[i].description + "'><a href='" + videoURLString + "'>" + finalResults2[i].title + "</a></attr><br>";
     var uploadDate = "Uploaded on: " + finalResults2[i].displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + channelID + "' target='_blank'>" + channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + finalResults2[i].thumbNailURL + "' target='_blank'>reverse image search</a></attr><br>";
 
+    metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
