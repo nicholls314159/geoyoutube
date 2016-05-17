@@ -187,7 +187,10 @@ function populateVideoMetaData(){
 
     //format meta-data section
     var videoString = $("<attr title='Description: " + viewObject.description + "'><a href=" + startURL + ">" + viewObject.title + "</a></attr><br>");
-    var videoDesc = "Description: " + viewObject.description + "<br>";
+    
+    var truncatedVideoDescription = viewObject.description.substring(0,100);
+    
+    var videoDesc = "Description: " + truncatedVideoDescription + "...<br>";
     var uploadDate = "Uploaded on: " + viewObject.displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + viewObject.thumbnailURL + "' target='_blank'>reverse image search</a></attr><br>";
