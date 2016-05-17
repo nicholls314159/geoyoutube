@@ -1024,7 +1024,7 @@ function getLocationSearchResults() {
 function filterIrrelevantResults() {
   finalResults2 = $.grep(finalResults, function(item) {
     
-    console.log("item.title is "+ item.tile);
+    console.log("item.title is "+ item.title);
     console.log("Car Regex found:  "+CAR_REGEX.test(item.title));
     console.log("Real Estate ('home for sale') found:  "+REAL_ESTATE_REGEX.test(item.title));
     
