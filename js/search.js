@@ -53,7 +53,10 @@ var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'
 var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 
 var CAR_REGEX = /\d{4} (?:dodge|chevy|ford|toyota|bmw|mercedes|honda|chrysler|pontiac|hyundai|audi|jeep|scion|cadillac|volks|acura|lexus|suburu|nissan|mazda|suzuki|buick|gmc|chevrolet|lincoln|infiniti|mini|hummer|porsche|volvo|land|kia|saturn|mitsubishi)/i;
-var REAL_ESTATE_REGEX = /home for sale/i
+var HOME_FOR_SALE_REGEX = /home for sale/i
+var MLS_NUMB_REGEX = /MLS#/i
+var REAL_ESTATE_REGEX = /real estate/i
+
 //(?:'home for sale'|'real estate'|'realty')
 
 //Current page URL for access params
@@ -1026,10 +1029,12 @@ function filterIrrelevantResults() {
     
     console.log("item.title is "+ item.title);
     console.log("Car Regex found:  "+CAR_REGEX.test(item.title));
-    console.log("Real Estate ('home for sale') found:  "+REAL_ESTATE_REGEX.test(item.title));
+    console.log("MLS# found:  "+MLS_NUMB_REGEX.test(item.title));
+    console.log("Home for Sale found:  "+HOME_FOR_SALE_REGEX.test(item.title));
+    console.log("Real Estate found:  "+REAL_ESTATE_REGEX.test(item.title));
     
     
-    return !(CAR_REGEX.test(item.title) || REAL_ESTATE_REGEX.test(item.title));
+    return !(CAR_REGEX.test(item.title) || REAL_ESTATE_REGEX.test(item.title) || MLS_NUMB_REGEX.test(item.title) || HOME_FOR_SALE_REGEX.test(item.title));
   });
 }
 
