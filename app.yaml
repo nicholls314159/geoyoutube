@@ -29,3 +29,7 @@ handlers:
 - url: /view.html
   static_files: view.html
   upload: view.html
+
+- url: /privacypolicy.htm
+  static_files: privacypolicy.htm
+  upload: privacypolicy.htm
