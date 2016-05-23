@@ -125,12 +125,12 @@ function loadSocialLinks(){
   console.log("facebookLink is "+facebookLink);
   console.log("twitterLink is "+twitterLink);
   
-   socialCell.append(twitterLink);
-   socialCell.append(twitterFunction);
    socialCell.append(facebookFunction);
    //('body').append(facebookFunction);
    socialCell.append(facebookLink);
    socialCell.append('&nbsp;&nbsp;&nbsp;');
+   socialCell.append(twitterLink);
+   socialCell.append(twitterFunction);
    
    //('body').append(twitterFunction);
    
@@ -360,11 +360,35 @@ function loadParamsFromURL() {
     }
     if(inputObject.inputStartDate){
       $('#startDate').val(inputObject.inputStartDate);
-      displayCustomRangeSection();
+      $('#customRangeSection_1').show();
+      $('#customRangeSection_2').show();
+      $('#customRangeSection_3').show();
+      $('#customRangeSection_4').show();
+      $('#customRangeSection_5').show();
+      $('#customRangeSection_6').show();
+      $('#customRangeSection_7').show();
+      $('#customRangeSection_8').show();
+      $('#customRangeSection_9').show();
+      $('#customRangeSection_10').show();
+      $('#customRangeSection_11').show();
+      $('#customRangeSection_12').show();
+
     }
     if(inputObject.inputEndDate){
       $('#endDate').val(inputObject.inputEndDate);
-      displayCustomRangeSection();
+      $('#customRangeSection_1').show();
+      $('#customRangeSection_2').show();
+      $('#customRangeSection_3').show();
+      $('#customRangeSection_4').show();
+      $('#customRangeSection_5').show();
+      $('#customRangeSection_6').show();
+      $('#customRangeSection_7').show();
+      $('#customRangeSection_8').show();
+      $('#customRangeSection_9').show();
+      $('#customRangeSection_10').show();
+      $('#customRangeSection_11').show();
+      $('#customRangeSection_12').show();
+
     }
     if(inputObject.inputLocationRadius){
       $('#locRadius').val(inputObject.inputLocationRadius);
