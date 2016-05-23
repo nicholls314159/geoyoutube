@@ -117,7 +117,8 @@ function loadSocialLinks(){
    
    var socialCell = $('<td>');
    var facebookFunction = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-   var facebookLink = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button_count" data-mobile-iframe="true"></div>'
+   //var facebookLink = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button_count" data-mobile-iframe="true"></div>'
+   var facebookLink = '<div class="fb-like" data-href="'+shortURL+'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>'
    var twitterLink = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
    var twitterFunction = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
     
@@ -345,6 +346,28 @@ function loadParamsFromURL() {
         queryFromClickSearchNotURL = false;
         searchYouTube();
       }
+    }
+    
+    //if the search location, dates, and/or keywords are in the URL then repopulate the form with them
+    //this if statement should return true if the variable is NOT null, undefined, length 0, false
+    if(inputObject.inputSearchLocation){
+      $(#searchLocation).val(inputObject.inputSearchLocation);
+    }
+    if(inputObject.inputQuery){
+      $(#query).val(inputObject.inputQuery);
+      showSearchFilters();
+    }
+    if(inputObject.inputStartDate){
+      $(#startDate).val(inputObject.inputStartDate);
+      displayCustomRangeSection();
+    }
+    if(inputObject.inputEndDate){
+      $(#endDate).val(inputObject.inputEndDate);
+      displayCustomRangeSection();
+    }
+    if(inputObject.inputLocationRadius){
+      $(#locRadius).val(inputObject.inputLocationRadius);
+      showSearchFilters();
     }
   }
 }
