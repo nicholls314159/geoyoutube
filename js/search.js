@@ -351,22 +351,22 @@ function loadParamsFromURL() {
     //if the search location, dates, and/or keywords are in the URL then repopulate the form with them
     //this if statement should return true if the variable is NOT null, undefined, length 0, false
     if(inputObject.inputSearchLocation){
-      $(#searchLocation).val(inputObject.inputSearchLocation);
+      $('#searchLocation').val(inputObject.inputSearchLocation);
     }
     if(inputObject.inputQuery){
-      $(#query).val(inputObject.inputQuery);
+      $('#query').val(inputObject.inputQuery);
       showSearchFilters();
     }
     if(inputObject.inputStartDate){
-      $(#startDate).val(inputObject.inputStartDate);
+      $('#startDate').val(inputObject.inputStartDate);
       displayCustomRangeSection();
     }
     if(inputObject.inputEndDate){
-      $(#endDate).val(inputObject.inputEndDate);
+      $('#endDate').val(inputObject.inputEndDate);
       displayCustomRangeSection();
     }
     if(inputObject.inputLocationRadius){
-      $(#locRadius).val(inputObject.inputLocationRadius);
+      $('#locRadius').val(inputObject.inputLocationRadius);
       showSearchFilters();
     }
   }
