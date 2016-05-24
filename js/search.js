@@ -1120,15 +1120,15 @@ function getPublishBeforeAndAfterTime() {
     inputObject.publishBeforeTime = "" + endDate.substr(6, 4) + "-" + endDate.substr(0, 2) + "-" + endDate.substr(3, 2) + "T00:00:00Z";
   //If time comes from drop down option, convert to UTC format
   } else {
-    var nowTime_TimeStamp = convertDateToTimeDateStamp(new Date())
+    var nowTime_TimeStamp = convertDateToTimeDateStamp(new Date());
     var nowTimeMilliSecs = new Date().getTime();
 
     //if publishBeforeTime is blank or the user clicked the search button then
     //set publishBeforeTime to current time.  Otherwise we want to use the value
     //from the URL parameter
-    if (!inputObject.publishBeforeTime || queryFromClickSearchNotURL) {
+    //if (!inputObject.publishBeforeTime || queryFromClickSearchNotURL) {
       inputObject.publishBeforeTime = nowTime_TimeStamp;
-    }
+    //}
 
     //define the before time in milliseconds by subtracting time window from the time right now
     var thresholdTime = 0;
