@@ -39,8 +39,8 @@ var inputObject = {};
 var geocoder;
 
 //publishAfterTime and publishBeforeTime define the before and after times to submit for the search
-var publishAfterTime = '';
-var publishBeforeTime = '';
+//var inputObject.publishAfterTime = '';
+//var publishBeforeTime = '';
 
 //queryFromClickSearchNotURL is a flag which indicates if the search originated from a clicked search button or from loading the parameters from the URL
 var queryFromClickSearchNotURL = false;
@@ -52,20 +52,18 @@ var INITIAL_ZOOM_LEVEL = 11;
 var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 
+// Pre-defined regular expressions to filter results by
 var CAR_REGEX = /\d{4} (?:dodge|chevy|ford|toyota|bmw|mercedes|honda|chrysler|pontiac|hyundai|audi|jeep|scion|cadillac|volks|acura|lexus|suburu|nissan|mazda|suzuki|buick|gmc|chevrolet|lincoln|infiniti|mini|hummer|porsche|volvo|land|kia|saturn|mitsubishi)/i;
 var HOME_FOR_SALE_REGEX = /home for sale/i
 var MLS_NUMB_REGEX = /MLS#/i
 var REAL_ESTATE_REGEX = /real estate/i
 var REALTY_REGEX = /realty/i
 
-//(?:'home for sale'|'real estate'|'realty')
-
 //Current page URL for access params
 var startURL = '';
 
 //URL generated from Google Shortener service, for use in tweets and FB posts
 var shortURL = '';
-
 
 /** Initialize portions of page on page load and create object with all News channels in it
  */
@@ -84,19 +82,16 @@ function handleClientLoad() {
   });
 }
 
-
 function handleMapsLoad() {
   geocoder = new google.maps.Geocoder();
   $('#search-button').attr('disabled', false);
   loadParamsFromURL();
 }
 
-
 /**
  * This function generates the FB and Twitter buttons and embeds them in the HTML
  */
 function loadSocialLinks(){
-  console.log("loadSocialLinks() ...start");
   //remove any old results
   $('#socialCell').empty();
   
@@ -107,7 +102,7 @@ function loadSocialLinks(){
    {
         shortURL = "http://www.geosearchtool.com"
    }
-   //console.log("shortURL " + shortURL);
+
    var social_div = '';
    social_div = $('<div>');
    social_div.addClass('socialCell');  
@@ -117,29 +112,23 @@ function loadSocialLinks(){
    
    var socialCell = $('<td>');
    var facebookFunction = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
-   //var facebookLink = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button_count" data-mobile-iframe="true"></div>'
    var facebookLink = '<div class="fb-like" data-href="'+shortURL+'" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>'
    var twitterLink = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
    var twitterFunction = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
     
-  console.log("facebookLink is "+facebookLink);
-  console.log("twitterLink is "+twitterLink);
+  //console.log("facebookLink is "+facebookLink);
+  //console.log("twitterLink is "+twitterLink);
   
    socialCell.append(facebookFunction);
-   //('body').append(facebookFunction);
    socialCell.append(facebookLink);
    socialCell.append('&nbsp;&nbsp;&nbsp;');
    socialCell.append(twitterLink);
    socialCell.append(twitterFunction);
    
-   //('body').append(twitterFunction);
-   
    socialRow.append(socialCell);
    socialTableDefinition.append(socialRow);
    social_div.append(socialTableDefinition);
    $('#socialCell').append(social_div);
-   
-   console.log("loadSocialLinks() ...end");
 }
 
 /**
@@ -187,8 +176,8 @@ function searchYouTube() {
               videoLiscense: inputObject.videoLiscense,
               videoEmbeddable: inputObject.videoEmbeddable,
               channelId: inputObject.currentChannel,
-              publishedAfter: publishAfterTime,
-              publishedBefore: publishBeforeTime,
+              publishedAfter: inputObject.publishAfterTime,
+              publishedBefore: inputObject.publishBeforeTime,
               key: API_ACCESS_KEY
             });
           } catch (err) {
@@ -208,8 +197,8 @@ function searchYouTube() {
               videoLiscense: inputObject.videoLiscense,
               videoEmbeddable: inputObject.videoEmbeddable,
               channelId: inputObject.currentChannel,
-              publishedAfter: publishAfterTime,
-              publishedBefore: publishBeforeTime,
+              publishedAfter: inputObject.publishAfterTime,
+              publishedBefore: inputObject.publishBeforeTime,
               key: API_ACCESS_KEY
             });
           } catch (err) {
@@ -235,8 +224,8 @@ function searchYouTube() {
             eventType: 'live',
             videoLiscense: inputObject.videoLiscense,
             videoEmbeddable: inputObject.videoEmbeddable,
-            publishedAfter: publishAfterTime,
-            publishedBefore: publishBeforeTime,
+            publishedAfter: inputObject.publishAfterTime,
+            publishedBefore: inputObject.publishBeforeTime,
             key: API_ACCESS_KEY
           });
         } catch (err) {
@@ -256,8 +245,8 @@ function searchYouTube() {
             maxResults: '50',
             videoLiscense: inputObject.videoLiscense,
             videoEmbeddable: inputObject.videoEmbeddable,
-            publishedAfter: publishAfterTime,
-            publishedBefore: publishBeforeTime,
+            publishedAfter: inputObject.publishAfterTime,
+            publishedBefore: inputObject.publishBeforeTime,
             key: API_ACCESS_KEY
           });
         } catch (err) {
@@ -273,10 +262,10 @@ function searchYouTube() {
 
 //need to clean out hard coded spaces from url params e.g. "new%20york" should be "new york"
 function cleanStringOfHTMLEncodedSpaces(raw_string){
-  if (typeof(raw_string) != "undefined"){
-      return raw_string.replace("%20", " ");
+  if (raw_string){
+      return raw_string.split("%20").join(" ");
   }else{
-    return raw_string;
+      return raw_string;
   }
 }
 
@@ -316,7 +305,7 @@ function loadParamsFromURL() {
     inputObject.inputSearchLocation = cleanStringOfHTMLEncodedSpaces(urlParams['sl']);
     inputObject.inputNewsChannelFilter = cleanStringOfHTMLEncodedSpaces(urlParams['ncf']);
     inputObject.inputZoomLevel = cleanStringOfHTMLEncodedSpaces(urlParams['zl']);
-    publishBeforeTime = cleanStringOfHTMLEncodedSpaces(urlParams['pbt']);
+    inputObject.publishBeforeTime = cleanStringOfHTMLEncodedSpaces(urlParams['pbt']);
 
     inputObject.inputEmbedsOnly = urlParams['eo'];
     if (urlParams["eo"] === "true") {
@@ -545,7 +534,7 @@ function generateURLwithQueryParameters() {
       "&ed=" + inputObject.inputEndDate + "&cl=" + inputObject.inputChannelList +
       "&sl=" + inputObject.inputSearchLocation + "&eo=" + inputObject.inputEmbedsOnly +
       "&loo=" + inputObject.inputLiveOnly + "&cco=" + inputObject.inputCreativeCommonsOnly +
-      "&zl=" + inputObject.inputZoomLevel + "&pbt=" + publishBeforeTime;
+      "&zl=" + inputObject.inputZoomLevel + "&pbt=" + inputObject.publishBeforeTime;
   } else {
     parameterString =
       "?q=" + inputObject.inputQuery + "&la=" + inputObject.inputLat +
@@ -554,7 +543,7 @@ function generateURLwithQueryParameters() {
       "&cl=" + inputObject.inputChannelList +
       "&sl=" + inputObject.inputSearchLocation + "&eo=" + inputObject.inputEmbedsOnly +
       "&loo=" + inputObject.inputLiveOnly + "&cco=" + inputObject.inputCreativeCommonsOnly +
-      "&zl=" + inputObject.inputZoomLevel + "&pbt=" + publishBeforeTime;
+      "&zl=" + inputObject.inputZoomLevel + "&pbt=" + inputObject.publishBeforeTime;
   }
 
   //Retrieve the domain from the existing URL, to construct the new URL
@@ -977,8 +966,8 @@ function getLocationSearchResults() {
                 channelId: inputObject.currentChannel,
                 location: inputObject.inputLat + "," + inputObject.inputLong,
                 locationRadius: inputObject.inputLocationRadius,
-                publishedAfter: publishAfterTime,
-                publishedBefore: publishBeforeTime,
+                publishedAfter: inputObject.publishAfterTime,
+                publishedBefore: inputObject.publishBeforeTime,
                 key: API_ACCESS_KEY,
               });
             } catch (err) {
@@ -1000,8 +989,8 @@ function getLocationSearchResults() {
                 channelId: inputObject.currentChannel,
                 location: inputObject.inputLat + "," + inputObject.inputLong,
                 locationRadius: inputObject.inputLocationRadius,
-                publishedAfter: publishAfterTime,
-                publishedBefore: publishBeforeTime,
+                publishedAfter: inputObject.publishAfterTime,
+                publishedBefore: inputObject.publishBeforeTime,
                 key: API_ACCESS_KEY,
               });
             } catch (err) {
@@ -1029,8 +1018,8 @@ function getLocationSearchResults() {
               videoEmbeddable: inputObject.videoEmbeddable,
               location: inputObject.inputLat + "," + inputObject.inputLong,
               locationRadius: inputObject.inputLocationRadius,
-              publishedAfter: publishAfterTime,
-              publishedBefore: publishBeforeTime,
+              publishedAfter: inputObject.publishAfterTime,
+              publishedBefore: inputObject.publishBeforeTime,
               key: API_ACCESS_KEY
             });
           } catch (err) {
@@ -1051,8 +1040,8 @@ function getLocationSearchResults() {
               maxResults: "50",
               videoLiscense: inputObject.videoLiscense,
               videoEmbeddable: inputObject.videoEmbeddable,
-              publishedAfter: publishAfterTime,
-              publishedBefore: publishBeforeTime,
+              publishedAfter: inputObject.publishAfterTime,
+              publishedBefore: inputObject.publishBeforeTime,
               key: API_ACCESS_KEY
             });
           } catch (err) {
@@ -1127,8 +1116,8 @@ function getPublishBeforeAndAfterTime() {
     var startDate = inputObject.inputStartDate;
     var endDate = inputObject.inputEndDate;
 
-    publishAfterTime = "" + startDate.substr(6, 4) + "-" + startDate.substr(0, 2) + "-" + startDate.substr(3, 2) + "T00:00:00Z";
-    publishBeforeTime = "" + endDate.substr(6, 4) + "-" + endDate.substr(0, 2) + "-" + endDate.substr(3, 2) + "T00:00:00Z";
+    inputObject.publishAfterTime = "" + startDate.substr(6, 4) + "-" + startDate.substr(0, 2) + "-" + startDate.substr(3, 2) + "T00:00:00Z";
+    inputObject.publishBeforeTime = "" + endDate.substr(6, 4) + "-" + endDate.substr(0, 2) + "-" + endDate.substr(3, 2) + "T00:00:00Z";
   //If time comes from drop down option, convert to UTC format
   } else {
     var nowTime_TimeStamp = convertDateToTimeDateStamp(new Date())
@@ -1137,8 +1126,8 @@ function getPublishBeforeAndAfterTime() {
     //if publishBeforeTime is blank or the user clicked the search button then
     //set publishBeforeTime to current time.  Otherwise we want to use the value
     //from the URL parameter
-    if (!publishBeforeTime || queryFromClickSearchNotURL) {
-      publishBeforeTime = nowTime_TimeStamp;
+    if (!inputObject.publishBeforeTime || queryFromClickSearchNotURL) {
+      inputObject.publishBeforeTime = nowTime_TimeStamp;
     }
 
     //define the before time in milliseconds by subtracting time window from the time right now
@@ -1169,9 +1158,9 @@ function getPublishBeforeAndAfterTime() {
 
     //if threshold time is 0 then set before to epoch
     if (thresholdTime === 0) {
-      publishAfterTime = '1970-01-01T00:00:00Z';
+      inputObject.publishAfterTime = '1970-01-01T00:00:00Z';
     } else {
-      publishAfterTime = convertDateToTimeDateStamp(new Date(thresholdTime));
+      inputObject.publishAfterTime = convertDateToTimeDateStamp(new Date(thresholdTime));
     }
   }
 }
