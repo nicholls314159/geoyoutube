@@ -23,6 +23,9 @@
 var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var API_ACCESS_KEY = 'AIzaSyDJTIlvEzU-B2152hKEyUzBoAJmflJzcjU';
 
+//Regex for URLs
+var URL_REGEX = /(?:https?|ftp):\/\/[\n\S]+/g;
+
 //inputObject contains all the inputs from the User
 var viewObject = {};
 
@@ -116,20 +119,8 @@ function pullVideoMetaData(){
              console.log('viewObject.thumbnailURL is ' + viewObject.thumbnailURL);
              viewObject.description = item.snippet.description;
              console.log('viewObject.description is ' + viewObject.description);
-             var year = item.snippet.publishedAt.substr(0, 4);
-             var monthNumeric = item.snippet.publishedAt.substr(5, 2);
-             var monthInt = 0;
              
-             if (monthNumeric.indexOf("0") === 0) {
-                 monthInt = monthNumeric.substr(1, 1);
-             } else {
-                 monthInt = monthNumeric;
-             }
-             var day = item.snippet.publishedAt.substr(8, 2);
-             var time = item.snippet.publishedAt.substr(11, 8);
-             var monthString = MONTH_NAMES[monthInt - 1];
-             
-             viewObject.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
+             viewObject.displayTimeStamp = getDisplayTimeFromTimeStamp(item.snippet.publishedAt);
              console.log('viewObject.displayTimeStamp is ' + viewObject.displayTimeStamp);
              viewObject.publishTimeStamp = item.snippet.publishedAt;
              console.log('viewObject.publishTimeStamp is ' + viewObject.publishTimeStamp);
@@ -187,8 +178,12 @@ function populateVideoMetaData(){
     //format meta-data section
     var videoString = $("<attr title='Description: " + viewObject.description + "'><a href=" + startURL + ">" + viewObject.title + "</a></attr><br>");
     
-    var truncatedVideoDescription = viewObject.description.substring(0,300);
-    
+    var truncatedVideoDescription = "";
+    //if description is non null, truncate it and remove any hard coded URLs
+    if(viewObject.description){
+      truncatedVideoDescription = replaceHardCodedURLs(viewObject.description.substring(0,300));
+    }
+
     var videoDesc = "Description: " + truncatedVideoDescription + "...<br>";
     var uploadDate = "Uploaded on: " + viewObject.displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + viewObject.channelID + "' target='_blank'>" + viewObject.channel + "</a></attr><br>";
@@ -201,15 +196,11 @@ function populateVideoMetaData(){
    {
         shortURL = "http://www.geosearchtool.com"
    }
-   console.log("1 shortURL " + shortURL);
 
     var facebookFunction = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>'
     var facebookLink = '<div class="fb-share-button" data-href="'+shortURL+'" data-layout="button" data-mobile-iframe="true"></div>'
     var twitterLink = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+shortURL+'" data-text="Check out this video!!!" data-hashtags="geosearchtool">Tweet</a>'
     var twitterFunction = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
-
-    console.log('facebookLink is '+facebookLink);
-    console.log('twitterLink is '+twitterLink);
 
     socialCell.append('<br><br>');
     socialCell.append(facebookFunction);
@@ -259,16 +250,42 @@ function showErrorSection() {
   $("#showErrors").show();
 }
 
+/** This function takes the time format from the response and changes it into a more readable format.
+ */ 
+function getDisplayTimeFromTimeStamp(timeStamp){
+    var displayTime = "";
+    var year = timeStamp.substr(0, 4);
+    var monthNumeric = timeStamp.substr(5, 2);
+    var monthInt = 0;
+
+    if (monthNumeric.indexOf("0") === 0) {
+      monthInt = monthNumeric.substr(1, 1);
+    } else {
+      monthInt = monthNumeric;
+    }
+    var day = timeStamp.substr(8, 2);
+    var time = timeStamp.substr(11, 8);
+    var monthString = MONTH_NAMES[monthInt - 1];
+
+    displayTime = monthString + " " + day + ", " + year + " - " + time + " UTC";
+    return displayTime;
+}
+
+/** This function removes hardcoded URLs from a string (e.g. this throws off the formatting if the description has a long
+ * URL in it).
+ */ 
+function replaceHardCodedURLs(rawString){
+ return rawString.replace(URL_REGEX, '');
+}
+
 /** This method handle search button clicks.   It pulls data from the web
  * form into the inputObject and then calls the search function.
  */
 function clickedSearchButton() {
    var dref = document.referrer
-   //console.log('dref is'+dref)
    if( dref.includes('/?q=') ){
       window.history.back();
    }else{
       window.location = "http://www.geosearchtool.com"
    }
-   
 }
