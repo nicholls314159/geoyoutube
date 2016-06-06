@@ -644,7 +644,7 @@ function processYouTubeRequest(request) {
       //generate request object for video search
       var videoIDRequest = gapi.client.youtube.videos.list({
         id: videoIDStringFinal,
-        part: 'id,snippet,recordingDetails',
+        part: 'id,snippet,recordingDetails','statistics'
         key: API_ACCESS_KEY
       });
 
@@ -664,6 +664,7 @@ function processYouTubeRequest(request) {
                 if (resultsArr[i].videoId === videoRequestVideoId) {
                   resultsArr[i].lat = this.recordingDetails.location.latitude;
                   resultsArr[i].long = this.recordingDetails.location.longitude;
+                  resultsArr[i].viewCount = this.statistics.viewCount;
                   break;
                 }
               }
@@ -775,6 +776,7 @@ function generateResultList() {
     var uploadDate = "Uploaded on: " + finalResults2[i].displayTimeStamp + "<br>";
     var channelString = "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + channelID + "' target='_blank'>" + channel + "</a></attr><br>";
     var reverseImageString = "<attr title='Use Google Image Search to find images that match the thumbnail image of the video.'><a href='https://www.google.com/searchbyimage?&image_url=" + finalResults2[i].thumbNailURL + "' target='_blank'>reverse image search</a></attr><br>";
+    var viewCountString = "View Count: " + finalResults2[i].viewCount
 
     metaDataCell.append(videoString);
     metaDataCell.append(uploadDate);
