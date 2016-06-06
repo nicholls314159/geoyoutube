@@ -644,7 +644,7 @@ function processYouTubeRequest(request) {
       //generate request object for video search
       var videoIDRequest = gapi.client.youtube.videos.list({
         id: videoIDStringFinal,
-        part: 'id,snippet,recordingDetails,statistics'
+        part: 'id,snippet,recordingDetails,statistics',
         key: API_ACCESS_KEY
       });
 
