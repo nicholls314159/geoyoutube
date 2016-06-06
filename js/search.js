@@ -900,7 +900,13 @@ function generatePopupBoxHTML(videoResult){
   var popupTitle = "";
   if(videoResult.title){
     //Truncate title to fit popup
-    popupTitle = videoResult.title.substring(0,25) + "..."
+    popupTitle = videoResult.title.substring(0,24) + "..."
+  }
+  
+  var displayChannelName = "";
+  if(channel){
+    //Truncate title to fit popup
+    displayChannelName = channel.substring(0,21) + "..."
   }
 
   var PopupBoxHTML = 
@@ -919,7 +925,7 @@ function generatePopupBoxHTML(videoResult){
   "</tr>"+
   '<tr>'+
   '<td width=220 style="word-wrap: break-word">'+
- "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + channelID + "' target='_blank'>" + channel + "</a></attr><br>";
+ "Ch:<attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + channelID + "' target='_blank'>" + channel + "</a></attr><br>";
  // "Concurrent Viewers:  " + videoResult.concurrentViewers + "<br>"+
   "</td>"+
   "</tr>"+
