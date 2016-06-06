@@ -85,6 +85,8 @@ function handleMapsLoad() {
   geocoder = new google.maps.Geocoder();
   $('#search-button').attr('disabled', false);
   loadParamsFromURL();
+  //include map overlay code
+  $.getScript("../js/mapOverlay.js");
 }
 
 /**
@@ -136,7 +138,7 @@ function loadSocialLinks(){
  *  passes the request to processYouTubeRequest()
  */
 function searchYouTube() {
-  console.log("searchYouTube() 1")
+  
   //Reset errors section, final results array and results section
   $(".showErrors").remove();
   resetResultsSection();
@@ -625,24 +627,8 @@ function processYouTubeRequest(request) {
         videoResult.liveBroadcastContent = entryArr[i].snippet.liveBroadcastContent;
         videoResult.thumbNailURL = entryArr[i].snippet.thumbnails.default.url;
         
-        
         videoResult.description = entryArr[i].snippet.description;
-
-        var year = entryArr[i].snippet.publishedAt.substr(0, 4);
-        var monthNumeric = entryArr[i].snippet.publishedAt.substr(5, 2);
-        var monthInt = 0;
-
-        if (monthNumeric.indexOf("0") === 0) {
-          monthInt = monthNumeric.substr(1, 1);
-        } else {
-          monthInt = monthNumeric;
-        }
-        var day = entryArr[i].snippet.publishedAt.substr(8, 2);
-        var time = entryArr[i].snippet.publishedAt.substr(11, 8);
-
-        var monthString = MONTH_NAMES[monthInt - 1];
-
-        videoResult.displayTimeStamp = monthString + " " + day + ", " + year + " - " + time + " UTC";
+        videoResult.displayTimeStamp = getDisplayTimeFromTimeStamp(entryArr[i].snippet.publishedAt);      
         videoResult.publishTimeStamp = entryArr[i].snippet.publishedAt;
 
         //add result to results
@@ -780,8 +766,7 @@ function generateResultList() {
     //format image section
     var imageString = "<img src='" + finalResults2[i].thumbNailURL + "' height='100' width='100'/>";
     imageCell.append(imageString);
-
-    
+  
     //Generate new URL string
     var videoURLString = "/view.html?v="+finalResults2[i].videoID;
     var videoURLStringLong = "http://www.geosearchtool.com"+videoURLString
@@ -875,24 +860,97 @@ function initializeMap(inputLat, inputLong) {
     var searchResultMarker = new google.maps.Marker({
       position: latLong,
       map: map,
-      icon: image,
       animation: google.maps.Animation.DROP,
-      labelContent: imageNumber,
-      labelAnchor: new google.maps.Point(100, 100),
-      labelClass: "labels",
-      labelInBackground: false,
-      url: finalResults2[i].url,
-      title: finalResults2[i].title,
       zIndex: imageNumber,
-      key: API_ACCESS_KEY
+      icon:{
+        url: 'images/redMarker_' + imageNumber + '.png',
+        size: new google.maps.Size(75, 62),
+        scaledSize: new google.maps.Size(75, 62)
+      }
     });
 
-    //Clicking on the marker will open the video in a new window
-    google.maps.event.addListener(searchResultMarker, 'click', function() {
-      window.open(this.url);
-    });
+    contentString = generatePopupBoxHTML(finalResults2[i]);
+    generateMapOverlayWindowAndMarkerListener(searchResultMarker, contentString);
   }
 }
+
+/**  This function creates a Map Overlay object, sets its content; then adds listener to the submitted map
+ *   marker and within the listener opens the Map Overlay object.
+ */ 
+function generateMapOverlayWindowAndMarkerListener(searchResultMarker, contentString){
+    var infoWindow = new (GenCustomWindow())();
+    infoWindow.setContent(contentString);
+    searchResultMarker.addListener('click', function() {
+      infoWindow.open(searchResultMarker.get('map'), searchResultMarker);
+    });
+}
+
+/** This function creates the HTML content of the popup which appears when a map marker icon is clicked.
+ */ 
+function generatePopupBoxHTML(videoResult){
+
+  var channel = videoResult.channel;
+  var channelID = videoResult.channelID;
+  var videoURLString = "/view.html?v="+videoResult.videoID;
+  var videoURLStringLong = "http://www.geosearchtool.com"+videoURLString;
+
+  if (!videoResult) {
+    channel = channelID;
+  }
+  var popupTitle = "";
+  if(videoResult.title){
+    //Truncate title to fit popup
+    popupTitle = videoResult.title.substring(0,25) + "..."
+  }
+
+  var PopupBoxHTML = 
+  '<table width=220 cellpadding=5>'+
+  '<tr><td><div class="mapOverlayClose">X</div></td></tr>'+
+  '<tr>'+
+  '<td width=220 style="word-wrap: break-word">'+ popupTitle + "<br>"+  
+  "</td>"+
+  "</tr>"+
+  '<tr>'+
+  '<td width=220 align="center">'+
+  "<a href='" + videoURLString + "'>" +
+  "<img src='" + videoResult.thumbNailURL + "' height='180' width='180' align='middle'/>" +
+  "</a><br>"+
+  "</td>"+
+  "</tr>"+
+  '<tr>'+
+  '<td width=220 style="word-wrap: break-word">'+
+ "Channel:  <attr title='Click to go to uploader's Channel'><a href='https://www.youtube.com/channel/" + channelID + "' target='_blank'>" + channel + "</a></attr><br>";
+ // "Concurrent Viewers:  " + videoResult.concurrentViewers + "<br>"+
+  "</td>"+
+  "</tr>"+
+  "</table>"
+
+  return PopupBoxHTML;
+}
+
+/**  This function takes the time format from the response object and converts into a format
+ *  which is easier to read.
+ */ 
+function getDisplayTimeFromTimeStamp(timeStamp){
+    console.log("getDisplayTimeFromTimeStamp with "+timeStamp)
+    var displayTime = "";
+    var year = timeStamp.substr(0, 4);
+    var monthNumeric = timeStamp.substr(5, 2);
+    var monthInt = 0;
+
+    if (monthNumeric.indexOf("0") === 0) {
+      monthInt = monthNumeric.substr(1, 1);
+    } else {
+      monthInt = monthNumeric;
+    }
+    var day = timeStamp.substr(8, 2);
+    var time = timeStamp.substr(11, 8);
+    var monthString = MONTH_NAMES[monthInt - 1];
+
+    displayTime = monthString + " " + day + ", " + year + " - " + time + " UTC";
+    return displayTime;
+}
+
 
 /**  Show the Custom Date Range Sections
  */
