@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *  @author:  Stephen Nicholls, March 10, 2014
+ *  @author:  Stephen Nicholls, June 5, 2016
  */
 
 .twitter-share-button[style] { vertical-align: text-bottom !important; }
@@ -30,7 +30,7 @@ body {
 }
 
 a:link {
-  color: #ddf;
+  color: #aaa;
   font-size: 16px;
 }
 
@@ -68,7 +68,7 @@ a {
 #searchLocation {
   float: left;
   height: 30px;
-  width: 400px;
+  width: 600px;
   border: 1px solid black;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -109,7 +109,7 @@ a {
 
 #query {
   height: 20px;
-  width: 250px;
+  width: 350px;
   border: 1px solid black;
   font-size: 14px;
 }
@@ -260,3 +260,24 @@ a {
   padding: 25px;
   color: #eee;
 }
+
+.mapOverlayWindow{
+   border-radius:4px;
+   background-image: url("jt_background.png");
+   max-width:220px;
+   max-height:280px;
+   text-align:left;
+   padding:0px 5px 5px 5px;
+   overflow:hidden;
+   position:absolute;
+   font-size: 14px;
+}
+.mapOverlayWindow .mapOverlayClose{
+   float:right;
+   cursor:pointer;
+   font-size: 14px;
+}
+ 
+
+
+
