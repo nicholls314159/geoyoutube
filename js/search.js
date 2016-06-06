@@ -782,6 +782,7 @@ function generateResultList() {
     metaDataCell.append(uploadDate);
     metaDataCell.append(channelString);
     metaDataCell.append(reverseImageString);
+    metaDataCell.append(viewCountString);
     //Put all the sections of the row together
     resultRow.append(imageCell);
     resultRow.append(metaDataCell);
