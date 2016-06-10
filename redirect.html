@@ -14,11 +14,7 @@ limitations under the License.
 
 Author:  Stephen Nicholls, March 10, 2014
 -->
-
-<!DOCTYPE html>
-<html>
-  <head>
-  <script>
+  <script type="text/javascript">
       
       var linkClick = document.getElementById('newGSTLink');
       linkClick.onclick = WriteCookie;
@@ -44,8 +40,8 @@ Author:  Stephen Nicholls, March 10, 2014
           name = cookiearray[i].split('=')[0];
           value = cookiearray[i].split('=')[1];
           //document.write ("Key is : " + name + " and Value is : " + value);
-          console.log('name is '+name+ ' and value is '+value)
-          if(name="name" && value="gst314159"){
+          console.log('name is '+name+ ' and value is '+value);
+          if(value == "gst314159"){
             //cookie already exists go directly to page
             console.log("cookie already exists go directly to page");
             window.location = "http://www.geosearchtool.com";
@@ -64,6 +60,10 @@ Author:  Stephen Nicholls, March 10, 2014
  
  
   </script>
+<!DOCTYPE html>
+<html>
+  <head>
+
 <!-- Facebook Meta Data -->  	
 <meta property="og:type" content="video.other" />
 <meta property="og:url" content="http://www.geosearchtool.com" />
