@@ -50,10 +50,10 @@ Author:  Stephen Nicholls, March 10, 2014
       }
   
      //After 10 seconds, then redirect and set cookie to auto-redirect to new URL
-     //setTimeout(function(){  
-     //   WriteCookie();
-     //   window.location = "http://www.geosearchtool.com";
-     //}, 5000);
+     setTimeout(function(){  
+        WriteCookie();
+        window.location = "http://www.geosearchtool.com";
+     }, 10000);
  
  
   </script>
@@ -95,7 +95,7 @@ Author:  Stephen Nicholls, March 10, 2014
   
   <b class="redirectPageBold">
   <!--  This link will also set a cookie to skip this page going forward -->
-  For the latest version of this implementation, go <div id="redirectLink"><a id="newGSTLink" href="http://www.geosearchtool.com/">here</a></div> and update your bookmarks.  
+  For the latest version of this implementation, go <a id="newGSTLink" href="http://www.geosearchtool.com/">here</a> and update your bookmarks.  
   </b>
   NOTE:  This is not a Google product. <br> The original implementation, using the <a href="https://github.com/youtube/geo-search-tool">public code</a> in github, go <a href="http://youtube.github.io/geo-search-tool/search.html">here</a>.
   <script type="text/javascript">
