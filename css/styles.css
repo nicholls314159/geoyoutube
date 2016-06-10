@@ -237,7 +237,15 @@ a {
   width: 1050px;
 }
 
-#redirectLink > a:link {
+#redirectDisplay {
+  color: white;
+  margin: 14px;
+  padding: 5px;
+  width: 1050px;
+}
+
+
+#redirectLink {
   color: #0000FF;
   font-size: 18px;
   
