@@ -15,10 +15,7 @@ limitations under the License.
 Author:  Stephen Nicholls, March 10, 2014
 -->
   <script type="text/javascript">
-      
-      var linkClick = document.getElementById('newGSTLink');
-      linkClick.onclick = WriteCookie;
-    
+
      //writes a simple cookie, used for redirects on subsequent page loads
      function WriteCookie(){
         var now = new Date();
@@ -102,6 +99,11 @@ Author:  Stephen Nicholls, March 10, 2014
   NOTE:  This is not a Google product. 
   <p>
   For the old implementation (using the code in github), go <a href="http://youtube.github.io/geo-search-tool/search.html">here</a>.
+  <script type="text/javascript">
+      var linkClick = document.getElementById('newGSTLink');
+      linkClick.onclick = WriteCookie;
+  </script>
+  
   </body>
 </html>
 <script>
