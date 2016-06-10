@@ -1,0 +1,114 @@
+<!-- 
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Author:  Stephen Nicholls, March 10, 2014
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <script>
+      
+      var linkClick = document.getElementById('newGSTLink');
+      linkClick.onclick = WriteCookie;
+    
+     //writes a simple cookie, used for redirects on subsequent page loads
+     function WriteCookie(){
+        var now = new Date();
+        now.setMonth( now.getMonth() + 12 );
+        document.cookie="name=gst314159";
+        document.cookie = "expires=" + now.toUTCString() + ";"
+      }
+      
+      //onLoad look for the GST cookie -- if there, then redirect right away
+      function ReadCookie(){
+        console.log("START ReadCookie()")
+        var allcookies = document.cookie;
+
+       // Get all the cookies pairs in an array
+        cookiearray = allcookies.split(';');
+               
+        // Now take key value pair out of this array
+        for(var i=0; i<cookiearray.length; i++){
+          name = cookiearray[i].split('=')[0];
+          value = cookiearray[i].split('=')[1];
+          //document.write ("Key is : " + name + " and Value is : " + value);
+          console.log('name is '+name+ ' and value is '+value)
+          if(name="name" && value="gst314159"){
+            //cookie already exists go directly to page
+            console.log("cookie already exists go directly to page");
+            window.location = "http://www.geosearchtool.com";
+            break;
+          }
+          console.log("cookie does NOT already exist so go directly to page");
+        }
+        console.log("END ReadCookie()")
+      }
+  
+     //After 10 seconds, then redirect and set cookie to auto-redirect to new URL
+     //setTimeout(function(){  
+    //    WriteCookie();
+    //    window.location = "http://www.geosearchtool.com";
+    // }, 10000);
+ 
+ 
+  </script>
+<!-- Facebook Meta Data -->  	
+<meta property="og:type" content="video.other" />
+<meta property="og:url" content="http://www.geosearchtool.com" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:site_name" content="Geo Search Tool" />
+<meta property="og:title" content="Search for Videos by Location!!!" /> 
+<meta property="og:image" content="http://www.geosearchtool.com/images/joshTR_1068.png" />
+<meta property="og:description" content="The Geo Search Tool allows you to search YouTube based on location and time, allowing citizen journalism and videos with little to no views to surface. "/>	
+<!-- schema.org tags for Google Search  -->
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Product",
+  "name" : "Geo Search Tool",
+  "url" : "http://www.geosearchtool.com",
+  "logo": "http://www.geosearchtool.com/images/joshTR_1068.png",
+  "sameAs" : [
+    "https://www.facebook.com/Geo-Search-Tool-693334990805336/",
+    "https://twitter.com/nicholls314159"
+  ]
+}
+</script>  
+    <title>Geo Search Tool</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+  </head>
+  <body onload="ReadCookie()">
+  <p>
+  <h2>New Version Available!!</h2>
+  </p>
+  <p>
+  <b class="aboutPageBold">
+  <!--  This link will also set a cookie to skip this page going forward -->
+  For the latest version of this implementation, go <a id="newGSTLink" href="http://www.geosearchtool.com/">here</a> and update your bookmarks.  
+  </b>
+  <p>
+  NOTE:  This is not a Google product. 
+  <p>
+  For the old implementation (using the code in github), go <a href="http://youtube.github.io/geo-search-tool/search.html">here</a>.
+  </body>
+</html>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-77148760-1', 'auto');
+  ga('send', 'pageview');
+</script>
