@@ -33,3 +33,7 @@ handlers:
 - url: /privacypolicy.htm
   static_files: privacypolicy.htm
   upload: privacypolicy.htm
+  
+- url: /redirect.html
+  static_files: redirect.html
+  upload: redirect.html
