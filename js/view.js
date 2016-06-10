@@ -91,7 +91,7 @@ function loadParamsFromURL() {
 function generateVideoViewer(){
     var div = $('<div>');
     div.addClass('videoPlayer');
-    var embeddedVideoPlayer = $('<iframe width="700" height="393" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'" frameborder="0" autoplay="1" allowfullscreen></iframe>');	
+    var embeddedVideoPlayer = $('<iframe width="700" height="393" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'?autoplay="1"" frameborder="0" allowfullscreen></iframe>');	
     $('#videoPlayer').append(embeddedVideoPlayer);
 }
 
@@ -110,20 +110,13 @@ function pullVideoMetaData(){
         } else {
           $.each(response.items, function(index, item) {
              viewObject.title = item.snippet.title;
-             console.log('viewObject.title is ' + viewObject.title);
              viewObject.channelID = item.snippet.channelId;
-             console.log('viewObject.channelID is ' + viewObject.channelID)
              viewObject.channel = item.snippet.channelTitle;
-             console.log('viewObject.channel is ' + viewObject.channel);
              viewObject.thumbnailURL = item.snippet.thumbnails.default.url;
-             console.log('viewObject.thumbnailURL is ' + viewObject.thumbnailURL);
              viewObject.description = item.snippet.description;
-             console.log('viewObject.description is ' + viewObject.description);
-             
+
              viewObject.displayTimeStamp = getDisplayTimeFromTimeStamp(item.snippet.publishedAt);
-             console.log('viewObject.displayTimeStamp is ' + viewObject.displayTimeStamp);
              viewObject.publishTimeStamp = item.snippet.publishedAt;
-             console.log('viewObject.publishTimeStamp is ' + viewObject.publishTimeStamp);
              viewObject.viewCount = item.statistics.viewCount;
           });
         }
