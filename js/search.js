@@ -57,6 +57,8 @@ var HOME_FOR_SALE_REGEX = /home for sale/i
 var MLS_NUMB_REGEX = /MLS#/i
 var REAL_ESTATE_REGEX = /real estate/i
 var REALTY_REGEX = /realty/i
+var EPISODE_REGEX = /episode/i
+var SEASON_REGEX = /season/i
 
 //Current page URL for access params
 var startURL = '';
@@ -1129,16 +1131,7 @@ function getLocationSearchResults() {
  */
 function filterIrrelevantResults() {
   finalResults2 = $.grep(finalResults, function(item) {
-    
-    console.log("item.title is "+ item.title);
-    console.log("Car Regex found:  "+CAR_REGEX.test(item.title));
-    console.log("MLS# found:  "+MLS_NUMB_REGEX.test(item.title));
-    console.log("Home for Sale found:  "+HOME_FOR_SALE_REGEX.test(item.title));
-    console.log("Real Estate found:  "+REAL_ESTATE_REGEX.test(item.title));
-    console.log("Realty found:  "+REALTY_REGEX.test(item.title));
-    
-    
-    return !(CAR_REGEX.test(item.title) || REAL_ESTATE_REGEX.test(item.title) || MLS_NUMB_REGEX.test(item.title) || HOME_FOR_SALE_REGEX.test(item.title) || REALTY_REGEX.test(item.title));
+    return !(CAR_REGEX.test(item.title) || REAL_ESTATE_REGEX.test(item.title) || MLS_NUMB_REGEX.test(item.title) || HOME_FOR_SALE_REGEX.test(item.title) || REALTY_REGEX.test(item.title) || EPISODE_REGEX.test(item.title) || SEASON_REGEX.test(item.title));
   });
 }
 
