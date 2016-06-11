@@ -618,8 +618,8 @@ function processYouTubeRequest(request) {
           videoResult.lat = latlongArr[0].trim();
           videoResult.long = latlongArr[1].trim();
         }
-        console.log('videoResult.lat is '+videoResult.lat)
-        console.log('videoResult.long is '+videoResult.long)
+        console.log('FIRST videoResult.lat is '+videoResult.lat)
+        console.log('FIRST videoResult.long is '+videoResult.long)
 
         videoResult.videoId = entryArr[i].id.videoId;
         videoIDString = videoIDString + videoResult.videoId + ",";
@@ -668,6 +668,9 @@ function processYouTubeRequest(request) {
                 if (resultsArr[i].videoId === videoRequestVideoId) {
                   //resultsArr[i].lat = this.recordingDetails.location.latitude;
                   //resultsArr[i].long = this.recordingDetails.location.longitude;
+        console.log('SECOND videoResult.lat is '+this.recordingDetails.location.latitude)
+        console.log('SECOND videoResult.long is '+this.recordingDetails.location.longitude)
+
                   resultsArr[i].viewCount = this.statistics.viewCount;
                   break;
                 }
