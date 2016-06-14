@@ -26,7 +26,8 @@ body {
   margin: 0;
   padding: 0;
   background-image: url("jt_background.png");
-  font-family: Arial, sans-serif;
+  font-family: Courier New;
+  
 }
 
 a:link {
