@@ -259,6 +259,7 @@ a {
 #gstTitle a {
   color: white;
   font-size: 22px;
+  text-decoration: none !important;
 }
 
 .aboutPageBold {
