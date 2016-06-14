@@ -255,6 +255,12 @@ a {
   color: #fff;
 }
 
+.gstTitle{
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .aboutPageBold {
   color: #FFFFCC;
   font-weight: bold;
