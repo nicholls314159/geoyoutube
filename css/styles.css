@@ -256,7 +256,7 @@ a {
   color: #fff;
 }
 
-#gstTitle{
+#gstTitle a {
   color: white;
   font-size: 22px;
 }
