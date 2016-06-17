@@ -91,7 +91,7 @@ function loadParamsFromURL() {
 function generateVideoViewer(){
     var div = $('<div>');
     div.addClass('videoPlayer');
-    var embeddedVideoPlayer = $('<iframe width="700" height="393" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'?autoplay="1"" frameborder="0" allowfullscreen></iframe>');	
+    var embeddedVideoPlayer = $('<iframe width="700" height="393" src="https://www.youtube.com/embed/'+viewObject.inputVideoID+'?autoplay=1" frameborder="0" allowfullscreen></iframe>');	
     $('#videoPlayer').append(embeddedVideoPlayer);
 }
 
