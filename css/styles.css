@@ -31,18 +31,6 @@ body {
   
 }
 
-#footer {
-   position:static;
-   bottom:0;
-   width:100%;
-   height:50px;   /* Height of the footer */
-   font-size: 10px;
-}
-
-#footer > a:link {
-  color: #aaa;
-  font-size: 10px;
-}
 
 
 a:link {
@@ -61,6 +49,19 @@ a:hover {
 a {
   display: inline-block;
   max-width: 300px;
+}
+#footer {
+   position:static;
+   bottom:0;
+   width:100%;
+   height:50px;   /* Height of the footer */
+   font-size: 10px;
+   color: #aaa;
+}
+
+#footer > a:link {
+  color: #aaa;
+  font-size: 10px;
 }
 
 #topSearchDisplay {
