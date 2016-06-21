@@ -273,7 +273,7 @@ a {
 }
 
 #gstTitle a {
-  color: white;
+  color: #aaa;
   font-size: 22px;
   text-decoration: none !important;
 }
