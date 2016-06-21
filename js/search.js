@@ -825,6 +825,10 @@ function hideSearchFilters() {
 function showResultsSection() {
   $("#map-canvas").show();
   $("#video-container").show();
+  $("#footer").hide();
+  $("#footer").show();
+
+  
 }
 
 /** Hide the Results Section on the UI
@@ -832,6 +836,8 @@ function showResultsSection() {
 function resetResultsSection() {
   $("#map-canvas").hide();
   $("#video-container").hide();
+  $("#footer").hide();
+  $("#footer").show();
 }
 
 /** Show the Errors Section
