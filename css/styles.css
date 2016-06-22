@@ -27,7 +27,7 @@ body {
   padding: 0;
   background-image: url("jt_background.png");
   font-family: Verdana, Geneva, sans-serif;
-  padding-bottom:60px;   /* Height of the footer */
+  /*padding-bottom:60px;   Height of the footer */
   
 }
 
@@ -85,7 +85,7 @@ a {
 #searchLocation {
   float: left;
   height: 30px;
-  width: 400px;
+  width: 600px;
   border: 1px solid black;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
