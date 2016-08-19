@@ -198,7 +198,11 @@ Author:  Stephen Nicholls, March 10, 2014
             <td>&nbsp;&nbsp;&nbsp;</td>
             <td>
               <input id='query' value='' type="text" placeholder=' e.g. fire, explosion'
+                     title='Enter keywords here to narrow the search results further' onClick = "ga('send', 'event', { eventCategory: 'GeoSearch', eventAction: 'customeKeywordsClicked', eventLabel: query.text});">
+<!--
+              <input id='query' value='' type="text" placeholder=' e.g. fire, explosion'
                      title='Enter keywords here to narrow the search results further' onClick = "ga('send', 'event', { eventCategory: 'GeoSearch', eventAction: 'customeKeywordsClicked', eventLabel: 'customeKeywordsClicked'});">
+-->
             </td>
             <td>&nbsp;&nbsp;&nbsp;</td>
             <td>
