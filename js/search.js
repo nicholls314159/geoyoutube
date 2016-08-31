@@ -393,6 +393,7 @@ function loadParamsFromURL() {
  * form into the inputObject and then calls the search function.
  */
 function clickedSearchButton() {
+  
   queryFromClickSearchNotURL = true;
   console.log("clickedSearchButton()")
 
@@ -426,6 +427,7 @@ function clickedSearchButton() {
     url = generateURLwithQueryParameters();
     window.location = url;
   }
+  ga('send', 'event', 'clickedSearchButton2', inputObject.inputQuery, inputObject.inputLong, 1);
 }
 
 
