@@ -427,7 +427,20 @@ function clickedSearchButton() {
     url = generateURLwithQueryParameters();
     window.location = url;
   }
-  ga('send', 'event', 'clickedSearchButton2', inputObject.inputQuery, inputObject.inputLong, 1);
+  locationSearchTerm = inputObject.inputSearchLocation + "-" + inputObject.inputQuery;
+  
+  ga('send', 'event', 'clickedSearch-SearchTerm', inputObject.inputQuery, inputObject.inputQuery, 1);
+  ga('send', 'event', 'clickedSearch-Location', inputObject.inputSearchLocation, inputObject.inputSearchLocation, 1);
+  ga('send', 'event', 'clickedSearch-LocationSearchTerm', locationSearchTerm, locationSearchTerm, 1);
+
+  if(inputObject.inputTimeWindow != 'any'){
+    timeWindowTerm = inputObject.inputTimeWindow + "-" + inputObject.inputSearchLocation;
+    ga('send', 'event', 'clickedSearch-TimeWindow-Location', timeWindowTerm, timeWindowTerm, 1);
+  }
+  if(inputObject.inputStartDate && inputObject.inputEndDate){
+      dateSearchTerm = inputObject.inputStartDate + "-" + inputObject.inputEndDate + "-" + inputObject.inputSearchLocation;
+      ga('send', 'event', 'clickedSearch-StartDate-Location', dateSearchTerm, dateSearchTerm, 1);
+  }
 }
 
 
