@@ -6,8 +6,8 @@ threadsafe: true
 
 handlers:
 - url: /
-  static_files: search.html
-  upload: search.html
+  static_files: about.html
+  upload: about.html
   
 - url: /search.html
   static_files: search.html
