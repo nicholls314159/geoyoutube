@@ -6,8 +6,8 @@ threadsafe: true
 
 handlers:
 - url: /
-  static_files: search.html
-  upload: search.html
+  static_files: about.html
+  upload: about.html
   
 - url: /search.html
   static_files: search.html
@@ -29,3 +29,15 @@ handlers:
 - url: /view.html
   static_files: view.html
   upload: view.html
+
+- url: /privacypolicy.htm
+  static_files: privacypolicy.htm
+  upload: privacypolicy.htm
+  
+- url: /terms.htm
+  static_files: terms.htm
+  upload: terms.htm  
+  
+- url: /redirect.html
+  static_files: redirect.html
+  upload: redirect.html
